@@ -31,7 +31,7 @@ pipeline {
       steps{
         echo "------------>Checkout<------------"
         checkout([
-            $class: 'GitSCM'
+            $class: 'GitSCM',
             branches: [[name: '*/master']],
             doGenerateSubmoduleConfigurations: false,
             extensions: [],
@@ -41,6 +41,7 @@ pipeline {
             credentialsId: 'GitHub_ervidmolina89',
             url:'https://github.com/ErvidMolina89/Prueba_ADN'
             ]]
+
 
         ])
       }
