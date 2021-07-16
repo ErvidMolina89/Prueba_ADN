@@ -42,7 +42,7 @@ pipeline {
 	    echo "------------>Unit Tests<------------"
 	    //sh '/gradlew --b ./build.gradle test'
 	    sh './gradlew test'
-	    sh './gradlew ervidTestReport'
+	    //sh './gradlew ervidTestReport'
       }
     }
     stage('Static Code Analysis') {
