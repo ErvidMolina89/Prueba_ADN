@@ -35,8 +35,8 @@ pipeline {
     gitTool: 'Default',
     submoduleCfg: [],
     userRemoteConfigs: [[
-    credentialsId: 'GitHub_yucaci24',
-    url:'https://github.com/yucaci24/PC_MultiProjectGradle'
+    credentialsId: 'GitHub_ervidmolina89,
+    url:'https://github.com/ErvidMolina89/Prueba_ADN'
     ]]
     ])
 
