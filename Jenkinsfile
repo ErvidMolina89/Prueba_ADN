@@ -27,6 +27,19 @@ pipeline {
 
   //Aquí comienzan los “items” del Pipeline
   stages{
+    checkout([
+    $class: 'GitSCM',
+    branches: [[name: '*/master']],
+    doGenerateSubmoduleConfigurations: false,
+    extensions: [],
+    gitTool: 'Default',
+    submoduleCfg: [],
+    userRemoteConfigs: [[
+    credentialsId: 'GitHub_yucaci24',
+    url:'https://github.com/yucaci24/PC_MultiProjectGradle'
+    ]]
+    ])
+
     stage('Build') {
       steps {
         echo "------------>Build<------------"
