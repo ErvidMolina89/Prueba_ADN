@@ -35,7 +35,7 @@ pipeline {
     gitTool: 'Default',
     submoduleCfg: [],
     userRemoteConfigs: [[
-    credentialsId: 'GitHub_ervidmolina89,
+    credentialsId: 'ErvidMolina89,
     url:'https://github.com/ErvidMolina89/Prueba_ADN'
     ]]
     ])
