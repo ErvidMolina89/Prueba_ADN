@@ -12,7 +12,7 @@ pipeline {
 
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
-    jdk 'JDK11_Centos' //Verisión preinstalada en la Configuración del Master
+    jdk 'JDK8_Centos' //Verisión preinstalada en la Configuración del Master
   }
 /*	Versiones disponibles
       JDK8_Mac
@@ -27,6 +27,25 @@ pipeline {
 
   //Aquí comienzan los “items” del Pipeline
   stages{
+  stage('Checkout') {
+        steps{
+          echo "------------>Checkout<------------"
+          checkout([
+          $class: 'Git',
+          branches: [[name: '*/master']],
+          doGenerateSubmoduleConfigurations: false,
+          extensions: [],
+          gitTool: 'Default',
+          submoduleCfg: [],
+          userRemoteConfigs: [[
+          credentialsId: 'GitHub_ervidmolina89',
+          url:'https://github.com/ErvidMolina89/Prueba_ADN.git'
+          ]]
+          ])
+
+        }
+      }
+
 
     stage('Build') {
       steps {
