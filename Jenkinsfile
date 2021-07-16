@@ -27,18 +27,6 @@ pipeline {
 
   //Aquí comienzan los “items” del Pipeline
   stages{
-    checkout([
-    $class: 'GitSCM',
-    branches: [[name: '*/master']],
-    doGenerateSubmoduleConfigurations: false,
-    extensions: [],
-    gitTool: 'Default',
-    submoduleCfg: [],
-    userRemoteConfigs: [[
-    credentialsId: 'ErvidMolina89,
-    url:'https://github.com/ErvidMolina89/Prueba_ADN'
-    ]]
-    ])
 
     stage('Build') {
       steps {
