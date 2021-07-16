@@ -10,7 +10,7 @@ pipeline {
 
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
-    jdk 'JDK8_Mac' //Verisión preinstalada en la Configuración del Master
+    jdk 'JDK8_Centos' //Verisión preinstalada en la Configuración del Master
   }
 
   stages {
@@ -42,7 +42,7 @@ pipeline {
     failure {
       echo 'This will run only if failed'
       mail (
-        to: 'eduardo.grosso@ceiba.com.co',
+        to: 'ervid.molina@ceiba.com.co',
         subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
         body: "Something is wrong with ${env.BUILD_URL}")
     }
