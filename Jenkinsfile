@@ -1,6 +1,9 @@
 pipeline {
   //Donde se va a ejecutar el Pipeline
-  agent any
+  agent {
+      label 'Slave_Induccion'
+    }
+
 
   //Opciones específicas de Pipeline dentro del Pipeline
   options {
@@ -10,7 +13,7 @@ pipeline {
 
   //Una sección que define las herramientas “preinstaladas” en Jenkins
   tools {
-    jdk 'JDK8_Centos' //Verisión preinstalada en la Configuración del Master
+    jdk 'JDK8_Mac' //Verisión preinstalada en la Configuración del Master
   }
 
   stages {
@@ -20,19 +23,22 @@ pipeline {
           sh './gradlew build -x test'
         }
     }
-    stage('Unit Tests') {
-      steps {
-        sh './gradlew clean'
-        echo '------------>Unit Tests<------------'
-        sh './gradlew test'
-      }
-    }
+
+    stage('Compile & Unit Tests') {
+          steps{
+            echo "------------>>Clean<------------"
+    	sh './gradlew clean'
+    	echo "------------>Unit Tests<------------"
+    	sh './gradlew test'
+    	sh './gradlew ervidTestReport'
+          }
+        }
 
     stage('Static Code Analysis') {
       steps {
         echo '------------>Análisis de código estático<------------'
         withSonarQubeEnv('Sonar') {
-          sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+          sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties""
         }
       }
     }
