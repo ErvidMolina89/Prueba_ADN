@@ -27,25 +27,6 @@ pipeline {
 
   //Aquí comienzan los “items” del Pipeline
   stages{
-  stage('Checkout') {
-        steps{
-          echo "------------>Checkout<------------"
-          checkout([
-          $class: 'Git',
-          branches: [[name: '*/master']],
-          doGenerateSubmoduleConfigurations: false,
-          extensions: [],
-          gitTool: 'Default',
-          submoduleCfg: [],
-          userRemoteConfigs: [[
-          credentialsId: 'GitHub_ervidmolina89',
-          url:'https://github.com/ErvidMolina89/Prueba_ADN.git'
-          ]]
-          ])
-
-        }
-      }
-
 
     stage('Build') {
       steps {
