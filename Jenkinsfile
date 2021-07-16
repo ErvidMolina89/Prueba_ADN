@@ -27,43 +27,6 @@ pipeline {
 
   //Aquí comienzan los “items” del Pipeline
   stages{
-    stage('Checkout') {
-      steps{
-        echo "------------>Checkout<------------"
-        checkout([
-            $class: 'GitSCM',
-            branches: [[name: '*/master']],
-            doGenerateSubmoduleConfigurations: false,
-            extensions: [],
-            gitTool: 'Default',
-            submoduleCfg: [],
-            userRemoteConfigs: [[
-            credentialsId: 'GitHub_ervidmolina89',
-            url:'https://github.com/ErvidMolina89/Prueba_ADN'
-            ]]
-
-
-        ])
-      }
-    }
-
-    stage('Compile & Unit Tests') {
-      steps{
-        echo "------------>Compile & Unit Tests<------------"
-        sh 'chmod +x gradlew'
-        sh '.gradlew --b ./build.gradle test'
-      }
-    }
-
-    stage('Static Code Analysis') {
-      steps{
-        echo '------------>Análisis de código estático<------------'
-        withSonarQubeEnv('Sonar') {
-            sh "${tool name: 'SonarScanner',
-             type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-        }
-      }
-    }
 
     stage('Build') {
       steps {
@@ -72,6 +35,24 @@ pipeline {
       }
     }
   }
+  stage('Compile & Unit Tests') {
+        steps{
+          echo "------------>Compile & Unit Tests<------------"
+          sh 'chmod +x gradlew'
+          sh '.gradlew --b ./build.gradle test'
+        }
+      }
+    stage('Static Code Analysis') {
+          steps{
+            echo '------------>Análisis de código estático<------------'
+            withSonarQubeEnv('Sonar') {
+                sh "${tool name: 'SonarScanner',
+                 type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+            }
+          }
+        }
+    }
+
 
   post {
     always {
