@@ -27,32 +27,31 @@ pipeline {
 
   //Aquí comienzan los “items” del Pipeline
   stages{
-
     stage('Build') {
       steps {
         echo "------------>Build<------------"
-        sh './gradlew --b ./build.gradle build -x test'
+        sh './gradlew build -x test'
       }
+    }
+    stage('Compile & Unit Tests') {
+      steps{
+        echo "------------>>Clean<------------"
+	sh './gradlew clean'
+	echo "------------>Unit Tests<------------"
+	sh './gradlew test'
+	sh './gradlew ervidTestReport'
+      }
+    }
+    stage('Static Code Analysis') {
+      steps{
+        echo '------------>Análisis de código estático<------------'
+        withSonarQubeEnv('Sonar') {
+        sh "${tool name: 'SonarScanner',
+        type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
+        }
+        }
     }
   }
-  stage('Compile & Unit Tests') {
-        steps{
-          echo "------------>Compile & Unit Tests<------------"
-          sh 'chmod +x gradlew'
-          sh '.gradlew --b ./build.gradle test'
-        }
-      }
-    stage('Static Code Analysis') {
-          steps{
-            echo '------------>Análisis de código estático<------------'
-            withSonarQubeEnv('Sonar') {
-                sh "${tool name: 'SonarScanner',
-                 type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner -Dproject.settings=sonar-project.properties"
-            }
-          }
-        }
-    }
-
 
   post {
     always {
@@ -64,11 +63,9 @@ pipeline {
     }
     failure {
       echo 'This will run only if failed'
-      mail (
-      to: 'ervid.molina@ceiba.com.co',
+      mail (to: 'ervid.molina@ceiba.com.co',
       subject: "Failed Pipeline:${currentBuild.fullDisplayName}",
-      body: "Something is wrong with ${env.BUILD_URL}"
-      )
+      body: "Something is wrong with ${env.BUILD_URL}")
     }
     unstable {
       echo 'This will run only if the run was marked as unstable'
