@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- The first set of items: set the border -->
+    <item>
+        <shape>
+            <!-- Set the border line width and color -->
+            <stroke android:width="3dp" android:color="@color/purple_500" />
+            <!-- Set the number of round angles -->
+            <corners android:radius="4dp"/>
+        </shape>
+    </item>
+
+</layer-list>
