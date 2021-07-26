@@ -41,7 +41,8 @@ class ExitViewModel : ViewModel() {
     fun getConsultCheckAndVehicle(id: Int){
         updateCheck = false
         getConsultCheckAndVehicleUseCase.invoke(id, {
-            if (updateCheck) return@invoke
+            if (updateCheck)
+                return@invoke
             consultCheckAndVehicle = it
             delegate?.responseConsultCheckAndVehicle(it)
             cilindreBoolean = false

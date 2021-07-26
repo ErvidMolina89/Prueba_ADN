@@ -12,8 +12,4 @@ class ModuleUseCase {
     @Provides
     fun provideGetConsultCheckAndVehicleUseCase() = GetConsultCheckAndVehicleUseCase()
 
-//    @ApplicationScope
-//    @Provides
-//    fun provideConsulteForUser() = ConsulteForUserUseCase()
-
 }

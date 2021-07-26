@@ -52,6 +52,9 @@ class NavigationViewModel : ViewModel() {
     }
 
     private fun onSuccessInsert(list: List<Long>){
+        list.forEach {
+            it
+        }
         insertPricesInit()
         insertDisponibilityInit()
     }

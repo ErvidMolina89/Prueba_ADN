@@ -71,7 +71,7 @@ class InsertViewModel : ViewModel() {
     fun getDisponibilityModelsTypeId(id: Int){
         repo.getDisponibilityModelsTypeId(id).observeForever {
             if (it != null) {
-                disponibility = it as DisponibilityModels
+                disponibility = it
             }
         }
     }
@@ -103,16 +103,12 @@ class InsertViewModel : ViewModel() {
         delegate?.responseCreateCheck(id.toInt())
     }
 
-    private fun onSuccesInsert(id: Long){
-        Log.e("", "")
-    }
-
     private fun onSuccesInsertDetail(id: Long){
         val item = DetailsVehicleModels()
         item.vehicleId = id.toInt()
         item.value = stringDetails
 
-        repoVehicle.onInsertDetailsVehicle(item, ::onSuccesInsert)
+        repoVehicle.onInsertDetailsVehicle(item)
     }
 
     fun setDelegate(delegate: InsertViewModelDelegate){
