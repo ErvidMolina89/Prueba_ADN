@@ -1,2 +1,5 @@
 rootProject.name = "Prueba ADN"
-include ':app'
+include ':presentation'
+include ':domain'
+include ':infraestructure'
+include ':application'

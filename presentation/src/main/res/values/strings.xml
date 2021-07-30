@@ -1,0 +1,38 @@
+<resources>
+
+    <string name="app_name">Prueba ADN</string>
+    <string name="title_activity_navigation">MainActivity</string>
+    <string name="title_home">Insert Vehicle</string>
+    <string name="title_dashboard">Exit Vehicle</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_insert">Insert Vehicle</string>
+    <string name="edit_text_insert">Insert Plate</string>
+    <string name="title_date">Date:</string>
+    <string name="text_date">yyyy-MM-dd</string>
+    <string name="title_hour">Hour:</string>
+    <string name="text_hour">HH:mm:ss</string>
+    <string name="title_exit">Exit Vehicle</string>
+    <string name="title_coste">Coste:</string>
+    <string name="text_coste">15000</string>
+    <string name="title_idCheck">CheckID:</string>
+    <string name="text_check">1</string>
+    <string name="edit_text_cylinder">Insert Cylinder</string>
+    <string name="edit_text_insert_check">ID Insert Check</string>
+    <string name="title_insert_check">Validate Check</string>
+    <string name="not_check">Invoice not found, check</string>
+    <string name="not_cylinder">You must enter the displacement of the motorcycle</string>
+    <string name="not_disponibility">Not available</string>
+    <string name="not_placa">You must enter a plate</string>
+    <string name="edit_text_search">Search Plate</string>
+    <string name="list_is_empty">Empty List</string>
+    <string name="add_vehicle">Add Vehicle</string>
+    <string name="cancel">Cancel</string>
+    <string name="title_dialog">Add Vehicle</string>
+    <string name="title_car">Car</string>
+    <string name="title_motocycle">Motocycle</string>
+    <string name="not_placa_day">Vehicle is not authorized to enter</string>
+    <string name="date_input">Date Input:</string>
+    <string name="plate">Plate</string>
+    <string name="btn_coste">Calculate Coste</string>
+
+</resources>
