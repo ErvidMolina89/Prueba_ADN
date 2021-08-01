@@ -44,4 +44,12 @@ class VehicleServiceTest{
     fun validateInsertVehicleCorrectExit() = coroutineRule.runBlockingTest {
 
     }
+
+    @ExperimentalCoroutinesApi
+    @Test
+    fun validateEntryDateVehicleTest() = coroutineRule.runBlockingTest {
+
+    }
+
+
 }

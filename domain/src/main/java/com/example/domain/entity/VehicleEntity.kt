@@ -6,6 +6,8 @@ import java.util.regex.Pattern
 
 class VehicleEntity {
 
+    private val format = "^[A-Z]{3}[0-9]{3}\$"
+
     var plate : String? = null
     var typeId : Int? = null
     var cylinder: String? = null
@@ -22,7 +24,7 @@ class VehicleEntity {
     }
 
     private fun validatePlateFormat(plate: String): Boolean {
-        val pattern: Pattern = Pattern.compile("^[A-Z]{3}[A-Z 0-9]{3}\$")
+        val pattern: Pattern = Pattern.compile(format)
         val matcher: Matcher = pattern.matcher(plate)
         return matcher.matches()
     }
