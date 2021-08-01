@@ -1,17 +1,10 @@
 package com.example.application.service
 
-import android.content.Context
 import com.example.domain.service.VariantInitService
 
-class VariantInitApplicationService {
+class VariantInitApplicationService (private val service: VariantInitService) {
 
-    lateinit var variantInintService: VariantInitService
-
-    fun VariantInitApplicationService(variantInintService: VariantInitService){
-        this.variantInintService = variantInintService
-    }
-
-    fun VariantInit(context: Context){
-        variantInintService.variantInit(context)
+    fun VariantInit(){
+        service.variantInit()
     }
 }

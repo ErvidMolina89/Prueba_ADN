@@ -14,6 +14,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.example.domain.aggregate.VehicleAggregate
 import com.example.domain.entity.CheckEntity
+import com.example.domain.entity.VehicleEntity
 import com.example.pruebaadn.R
 import com.example.pruebaadn.base.App
 import com.google.android.material.textfield.TextInputLayout
@@ -22,9 +23,9 @@ import java.util.*
 class DialogAddVehicle private constructor(): DialogFragment() {
 
     private val T = "DialogAddVehicle"
-    private var vehicleAggregate: VehicleAggregate? = null
-    private var checkEntity: CheckEntity? = null
+    private var vehicleEntity: VehicleEntity? = null
     private var today: Date? = null
+    private var dateInput: String? = null
 
     companion object{
         private var showingDialog = false
@@ -56,8 +57,8 @@ class DialogAddVehicle private constructor(): DialogFragment() {
         findsViewElements()
         addListenersButton()
         addListenersRadioButton()
-        vehicleAggregate = VehicleAggregate()
-        vehicleAggregate?.typeId = 1
+        vehicleEntity = VehicleEntity()
+        vehicleEntity?.typeId = 1
         return mainContainer
     }
 
@@ -93,10 +94,7 @@ class DialogAddVehicle private constructor(): DialogFragment() {
             enterDateToday()
             if (edit_plate?.text?.toString()?.isEmpty()!!)
                 return@setOnClickListener App.getContext()!!.createToast(getString(R.string.not_placa))
-            val date = checkEntity?.dateInput?.convertToFormatDate(DateFormats.ISO_8601)
-            if (!date?.validateEntryDateVehicle(edit_plate?.text.toString())!!)
-                return@setOnClickListener App.getContext()!!.createToast(getString(R.string.not_placa_day))
-            when(vehicleAggregate?.typeId){
+            when(vehicleEntity?.typeId){
                 1->{ getVehicleCar() }
                 2 -> {
                     if (edit_cylinder?.text?.toString()?.isEmpty()!!) {
@@ -106,7 +104,7 @@ class DialogAddVehicle private constructor(): DialogFragment() {
                     getVehicleMotocycle()
                 }
             }
-            invokesActionOk?.invoke(vehicleAggregate!!)
+            invokesActionOk?.invoke(vehicleEntity!!, dateInput!!)
             dismiss()
             cleanElementsOfSight()
         }
@@ -119,32 +117,33 @@ class DialogAddVehicle private constructor(): DialogFragment() {
     private fun addListenersRadioButton(){
         radio_car?.setOnClickListener {
             edit_cylinder_container?.hide()
-            vehicleAggregate?.typeId = 1
+            vehicleEntity?.typeId = 1
         }
         radio_motocycle?.setOnClickListener {
             edit_cylinder_container?.show()
-            vehicleAggregate?.typeId = 2
+            vehicleEntity?.typeId = 2
         }
     }
 
     private fun getVehicleCar(){
-        vehicleAggregate?.plate = edit_plate!!.text.toString()
+        vehicleEntity?.plate = edit_plate!!.text.toString()
     }
 
     private fun getVehicleMotocycle(){
-        vehicleAggregate?.cylinder = edit_cylinder?.text?.toString()
+        vehicleEntity?.plate = edit_plate!!.text.toString()
+        vehicleEntity?.cylinder = edit_cylinder?.text?.toString()
     }
 
     private fun enterDateToday(){
         today = Date()
-        checkEntity = CheckEntity()
-        checkEntity?.dateInput = today?.convertToFormatString(DateFormats.ISO_8601)
-        vehicleAggregate?.checkEntity = checkEntity
+        dateInput = today?.convertToFormatString(DateFormats.ISO_8601)
     }
 
     private fun cleanElementsOfSight(){
         invokesActionOk = null
-        vehicleAggregate = null
+        vehicleEntity = null
+        radio_motocycle?.isChecked = false
+        radio_car?.isChecked = true
         edit_plate?.setText("")
         edit_cylinder?.setText("")
     }
@@ -175,8 +174,8 @@ class DialogAddVehicle private constructor(): DialogFragment() {
         }
     }
 
-    private var invokesActionOk:((VehicleAggregate)->Unit)?= null
-    fun withActionBtnOk(actionOk : (VehicleAggregate)->Unit) : DialogAddVehicle {
+    private var invokesActionOk:((VehicleEntity, String)->Unit)?= null
+    fun withActionBtnOk(actionOk : (VehicleEntity, String)->Unit) : DialogAddVehicle {
         this.invokesActionOk = actionOk
         return this
     }

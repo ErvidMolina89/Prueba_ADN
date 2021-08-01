@@ -6,15 +6,15 @@ import com.example.domain.repository.VehicleRepository
 import com.example.infraestructure.data_access.DbEstacionamiento
 import com.example.infrastructure.data_access.mapper.fromModels
 
-class VehicleRepoRoom : VehicleRepository {
+class VehicleRepoRoom  (private val context: Context) : VehicleRepository {
 
-    override fun vehicleExists(id: String, context: Context): Boolean {
+    override fun vehicleExists(id: String): Boolean {
         val vehicle = DbEstacionamiento.getInstance(context).vehicleDao().getVehicleForPlate(id)
         if (vehicle != null) return true
         return false
     }
 
-    override fun insertVehicleDB(context: Context, vehicleEntity: VehicleEntity): Long {
+    override fun insertVehicleDB(vehicleEntity: VehicleEntity): Long {
         return DbEstacionamiento.getInstance(context).vehicleDao().insert(vehicleEntity.fromModels())
     }
 

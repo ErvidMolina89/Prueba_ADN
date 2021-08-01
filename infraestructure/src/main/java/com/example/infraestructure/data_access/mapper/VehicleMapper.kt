@@ -6,9 +6,6 @@ import com.example.infraestructure.data_access.models.variant_init.Disponibility
 import com.example.infraestructure.data_access.models.variant_init.TypeVehicleModels
 
 fun VehicleEntity.fromModels(): VehicleModels {
-    val entity = VehicleModels(plate = this.plate!!).apply {
-        typeId = this.typeId
-        cylinder = this.cylinder
-    }
+    val entity = VehicleModels(plate = this.plate!!, this.typeId, this.cylinder)
     return  entity
 }

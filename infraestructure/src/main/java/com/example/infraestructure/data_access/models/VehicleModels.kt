@@ -14,7 +14,7 @@ import com.example.infraestructure.data_access.models.variant_init.TypeVehicleMo
 data class VehicleModels(
     @PrimaryKey
     @ColumnInfo(name = "Plate")     var plate       : String,
-    @ColumnInfo(name = "Cylinder")  var cylinder    : String? = null,
-    @ColumnInfo(name = "TypeId")    var typeId      : Int? = null
+    @ColumnInfo(name = "TypeId")    var typeId      : Int? = null,
+    @ColumnInfo(name = "Cylinder")  var cylinder    : String? = null
 
 )

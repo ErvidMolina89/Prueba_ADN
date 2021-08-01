@@ -6,35 +6,38 @@ import com.example.infraestructure.data_access.models.CheckModels
 import com.example.infraestructure.data_access.models.ConsultCheckAndVehicle
 
 fun CheckEntity.fromModels(): CheckModels {
-    val entity = CheckModels().apply {
-        id = this.id
-        vehicleId = this.vehicleId
-        dateInput = this.dateInput
-        dateExit  = this.dateExit
-        totalCost = this.totalCost
-    }
-    return  entity
+    val model = CheckModels()
+    model.id = this.id
+    model.plateId = this.plateId
+    model.dateInput = this.dateInput
+    model.dateExit  = this.dateExit
+    model.totalCost = this.totalCost
+
+    return  model
 }
 
 fun CheckModels.fromEntity(): CheckEntity {
-    val entity = CheckEntity().apply {
-        id = this.id
-        vehicleId = this.vehicleId
-        dateInput = this.dateInput
-        dateExit  = this.dateExit
-        totalCost = this.totalCost
-    }
+    val entity = CheckEntity()
+    entity.id = this.id
+    entity.plateId = this.plateId
+    entity.dateInput = this.dateInput
+    entity.dateExit  = this.dateExit
+    entity.totalCost = this.totalCost
+
     return  entity
 }
 
 fun List<ConsultCheckAndVehicle>.fromMutableAggregate():  MutableList<VehicleAggregate> {
     val list = emptyList<VehicleAggregate>().toMutableList()
-    this.map {
+    this.forEach {
         val aggregate = VehicleAggregate()
         aggregate.plate = it.vehicleModels?.plate
         aggregate.typeId = it.vehicleModels?.typeId
         aggregate.cylinder = it.vehicleModels?.cylinder
         aggregate.checkEntity = it.checkModels?.fromEntity()
+        if (aggregate.checkEntity?.totalCost == null) {
+            list.add(aggregate)
+        }
     }
     return list
 }

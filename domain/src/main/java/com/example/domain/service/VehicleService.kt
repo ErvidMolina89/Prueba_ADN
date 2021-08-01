@@ -1,53 +1,71 @@
 package com.example.domain.service
 
-import android.content.Context
-import android.view.Gravity
-import android.widget.Toast
 import com.example.domain.aggregate.VehicleAggregate
 import com.example.domain.entity.CheckEntity
+import com.example.domain.entity.DisponibilityEntity
 import com.example.domain.entity.VehicleEntity
 import com.example.domain.exception.InvalidDataException
 import com.example.domain.repository.CheckRepository
+import com.example.domain.repository.DisponibilityRepository
 import com.example.domain.repository.VehicleRepository
-import java.util.regex.Matcher
-import java.util.regex.Pattern
+import com.example.domain.util.convertToFormatDate
+import java.util.*
 
-class VehicleService {
-    private lateinit var vehicleRepository: VehicleRepository
-    private lateinit var checkRepository: CheckRepository
+class VehicleService (
+    private val vehicleRepository: VehicleRepository,
+    private val disponibilityRepository: DisponibilityRepository
+        ) {
 
-    fun VehicleService(vehicleRepository: VehicleRepository ){
-        this.vehicleRepository = vehicleRepository
-    }
+    private lateinit var disponibility: DisponibilityEntity
 
-    fun CheckService(checkRepository: CheckRepository){
-        this.checkRepository = checkRepository
-    }
-
-    private fun validatePlateFormat(context: Context,plate: String){
-        val pattern: Pattern = Pattern.compile("^[A-Z]{3}[A-Z 0-9]{3}\$")
-        val matcher: Matcher = pattern.matcher(plate)
-        if (!matcher.matches()){
-            throw InvalidDataException("La placa no cuenta con el formato adecuado")
+    fun insertVehicleDB(vehicle: VehicleEntity, dateInput: String) : Long {
+        disponibility = DisponibilityEntity()
+        if (vehicleRepository.vehicleExists(vehicle.plate!!)) {
+            return throw InvalidDataException("Vehicle Exist")
         }
-    }
-
-    fun insertVehicleDB(context: Context, vehicle: VehicleAggregate) {
-        if (vehicleRepository.vehicleExists(vehicle.plate!!, context)){
-            throw InvalidDataException("Vehicle Existe")
-        } else {
-            validatePlateFormat(context, vehicle.plate!!)
-            val entity = VehicleEntity()
-            entity.VehicleEntity(vehicle.plate!!, vehicle.typeId!!, vehicle.cylinder)
-            val idVehicle = vehicleRepository.insertVehicleDB(context, entity)
-            insertCheckDB(idVehicle.toInt(), vehicle.checkEntity, context)
+        try {
+            validationsRelatedToVehicleCreation(vehicle, dateInput)
+        }catch (e: InvalidDataException){
+            throw InvalidDataException("")
         }
+        return vehicleRepository.insertVehicleDB(vehicle)
     }
 
-    private fun insertCheckDB(idVehicle: Int, checkEntity: CheckEntity?, context: Context) {
-        checkEntity?.vehicleId = idVehicle
-        val id = checkRepository.insertCheckDB(context, checkEntity)
-        id
+    private fun validationsRelatedToVehicleCreation(vehicle: VehicleEntity, dateInput: String): Boolean {
+        if (!validateEntryDateVehicle(vehicle.plate!!, dateInput)){
+            throw InvalidDataException("Vehicle Parking Not Autorize")
+            return false
+        }
+        if (validateDisponibilityVehicle(vehicle.typeId!!)){
+            throw InvalidDataException("Parking Not Disponibility")
+            return false
+        }
+        return true
+    }
+
+    private fun validateEntryDateVehicle(plate: String, dateInput: String): Boolean{
+        val calendar = Calendar.getInstance()
+        calendar.time = dateInput.convertToFormatDate()
+        val day = calendar.get(Calendar.DAY_OF_WEEK)
+        val subString = plate.substring(0, 1)
+        if (subString == "A" && (day == Calendar.SUNDAY || day == Calendar.MONDAY)) {
+            return false
+        }
+        return true
+    }
+
+    private fun validateDisponibilityVehicle (type: Int): Boolean {
+        disponibility = disponibilityRepository.getDisponibilityForTypeId(type)
+        if(disponibility.count!! <= 0){
+            return true
+        }
+        updateDisponibility(disponibility)
+        return false
+    }
+
+    private fun updateDisponibility(disponibility: DisponibilityEntity) {
+        disponibility.count = disponibility.count!! - 1
+        disponibilityRepository.updateDisponibility(disponibility)
     }
 
 }

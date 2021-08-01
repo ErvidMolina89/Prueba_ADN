@@ -1,20 +1,25 @@
 package com.example.infrastructure.data_access.mapper
 
 import com.example.domain.entity.DisponibilityEntity
-import com.example.domain.entity.TypeVehicleEntity
 import com.example.infraestructure.data_access.models.variant_init.DisponibilityModels
-import com.example.infraestructure.data_access.models.variant_init.TypeVehicleModels
 
 fun DisponibilityEntity.fromModels(): DisponibilityModels {
-    val entity = DisponibilityModels().apply {
-        id = this.id
-        typeId = this.typeId
-        count = this.count
-    }
+    val entity = DisponibilityModels()
+    entity.id = this.id
+    entity.typeId = this.typeId
+    entity.count = this.count
     return  entity
 }
 
-fun List<DisponibilityModels>.fromListModels(): MutableList<DisponibilityEntity>{
+fun DisponibilityModels.fromEntity(): DisponibilityEntity {
+    val entity = DisponibilityEntity()
+    entity.id = this.id
+    entity.typeId = this.typeId
+    entity.count = this.count
+    return  entity
+}
+
+fun List<DisponibilityModels>.fromListEntity(): MutableList<DisponibilityEntity>{
     val listEntity = emptyList<DisponibilityEntity>().toMutableList()
         this.forEach { models ->
             val item  = DisponibilityEntity()

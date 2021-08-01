@@ -1,23 +1,20 @@
 package com.example.application.service
 
-import android.content.Context
 import com.example.domain.aggregate.VehicleAggregate
 import com.example.domain.entity.CheckEntity
 import com.example.domain.service.CheckService
 
-class CheckApplicationService {
+class CheckApplicationService (private val service: CheckService) {
 
-    lateinit var service: CheckService
-
-    fun CheckApplicationService(service: CheckService){
-        this.service = service
+    fun getAllCheck(): MutableList<VehicleAggregate>{
+        return service.getAllCheck()
     }
 
-    fun getAllCheck(context: Context): MutableList<VehicleAggregate>{
-        return service.getAllCheck(context)
+    fun insertChechVehicle(checkEntity: CheckEntity): Long {
+        return service.insertChechVehicle(checkEntity)
     }
 
-    fun updateCheck(checkEntity: CheckEntity, context: Context) {
-        service.updateCheck(checkEntity, context)
+    fun validateCosteVehicle(checkAggregate: VehicleAggregate): CheckEntity {
+        return service.validateCosteVehicle(checkAggregate)
     }
 }

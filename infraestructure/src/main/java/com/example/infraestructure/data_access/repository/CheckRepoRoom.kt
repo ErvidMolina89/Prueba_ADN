@@ -8,17 +8,17 @@ import com.example.infraestructure.data_access.DbEstacionamiento
 import com.example.infrastructure.data_access.mapper.fromModels
 import com.example.infrastructure.data_access.mapper.fromMutableAggregate
 
-class CheckRepoRoom : CheckRepository {
+class CheckRepoRoom (private val context: Context) : CheckRepository {
 
-    override fun insertCheckDB(context: Context, checkEntity: CheckEntity?): Long {
-        return DbEstacionamiento.getInstance(context).checkDao().insert(checkEntity?.fromModels()!!)
-    }
-
-    override fun getAllCheck(context: Context): MutableList<VehicleAggregate> {
+    override fun getAllCheck(): MutableList<VehicleAggregate> {
         return DbEstacionamiento.getInstance(context).checkDao().getAllConsultCheckAndVehicleId().fromMutableAggregate()
     }
 
-    override fun updateCheck(checkEntity: CheckEntity, context: Context) {
+    override fun insertChechVehicle(checkEntity: CheckEntity): Long {
+        return DbEstacionamiento.getInstance(context).checkDao().insert(checkEntity.fromModels())
+    }
+
+    override fun updateCheck(checkEntity: CheckEntity) {
         DbEstacionamiento.getInstance(context).checkDao().update(checkEntity.fromModels())
     }
 

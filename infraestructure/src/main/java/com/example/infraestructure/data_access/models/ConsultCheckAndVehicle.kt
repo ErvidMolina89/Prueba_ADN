@@ -7,7 +7,7 @@ class ConsultCheckAndVehicle {
     @Embedded
     var checkModels: CheckModels? = null
 
-    @Relation(parentColumn = "VehicleId",
+    @Relation(parentColumn = "PlateId",
     entityColumn = "Plate")
     var vehicleModels: VehicleModels? = null
 }

@@ -32,7 +32,7 @@
     <string name="title_motocycle">Motocycle</string>
     <string name="not_placa_day">Vehicle is not authorized to enter</string>
     <string name="date_input">Date Input:</string>
-    <string name="plate">Plate</string>
+    <string name="plate">Plate: </string>
     <string name="btn_coste">Calculate Coste</string>
 
 </resources>

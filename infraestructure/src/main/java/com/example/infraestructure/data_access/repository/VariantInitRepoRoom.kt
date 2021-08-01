@@ -7,11 +7,9 @@ import com.example.infraestructure.data_access.data.DataConfig
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class VariantInitRepoRoom : VariantInitRepository{
-    lateinit var context: Context
+class VariantInitRepoRoom  (private val context: Context) : VariantInitRepository{
 
-    override fun variantInitRepository(context:Context) {
-        this.context = context
+    override fun variantInitRepository() {
         val list = DbEstacionamiento.getInstance(context).typeVehicleDao().getAllTypeVehicleModels()
         if (list.size == 0){
             GlobalScope.launch {

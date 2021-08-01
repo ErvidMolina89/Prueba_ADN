@@ -8,12 +8,12 @@ import androidx.room.ForeignKey
 @Entity(foreignKeys = [
     ForeignKey(entity = VehicleModels::class,
         parentColumns = ["Plate"],
-        childColumns = ["VehicleId"])
+        childColumns = ["PlateId"])
 ])
 data class  CheckModels(
     @PrimaryKey
     @ColumnInfo(name = "Id")        var id          : Int? = null,
-    @ColumnInfo(name = "VehicleId") var vehicleId   : String? = null,
+    @ColumnInfo(name = "PlateId")   var plateId     : String? = null,
     @ColumnInfo(name = "DateInput") var dateInput   : String? = null,
     @ColumnInfo(name = "DateExit")  var dateExit    : String? = null,
     @ColumnInfo(name = "TotalCost") var totalCost   : Double? = null

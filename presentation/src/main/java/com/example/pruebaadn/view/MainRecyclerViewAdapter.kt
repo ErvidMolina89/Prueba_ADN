@@ -1,5 +1,6 @@
 package com.example.pruebaadn.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,10 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.aggregate.VehicleAggregate
+import com.example.domain.util.convertToFormatDate
 import com.example.pruebaadn.R
+import com.example.pruebaadn.utils.DateFormats
+import com.example.pruebaadn.utils.convertToFormatString
 import com.example.pruebaadn.utils.hide
 
 class MainRecyclerViewAdapter  (
@@ -24,6 +28,7 @@ class MainRecyclerViewAdapter  (
         return ViewHolder(view)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val item: VehicleAggregate = mValues[position]
@@ -31,8 +36,11 @@ class MainRecyclerViewAdapter  (
         holder.textview_plate.text = item.plate
         if (item.typeId == 1){
             holder.textview_container_moto.hide()
-        }else holder.textview_container_car.hide()
-        holder.textView_date.text = item.checkEntity?.dateInput
+        }else {
+            holder.textview_container_car.hide()
+            holder.textView_moto.text = context?.getString(R.string.title_motocycle) + "  ${item.cylinder}"
+        }
+        holder.textView_date.text = item.checkEntity?.dateInput?.convertToFormatDate()?.convertToFormatString(DateFormats.DATE_REDUCED)
 
         setListeners(holder,item)
     }
@@ -49,7 +57,7 @@ class MainRecyclerViewAdapter  (
 
     fun setData(listSearch : MutableList<VehicleAggregate>){
         this.mValues = listSearch
-        //notifyDataSetChanged()
+        notifyDataSetChanged()
     }
 
     fun onClickListener(listener : (VehicleAggregate)-> Unit){
@@ -61,6 +69,7 @@ class MainRecyclerViewAdapter  (
         val textview_plate          : TextView = mView.findViewById(R.id.TextViewPlateCard)
         val textview_container_car  : LinearLayout = mView.findViewById(R.id.contentCarCard)
         val textview_container_moto : LinearLayout = mView.findViewById(R.id.contentMotoCard)
+        val textView_moto           : TextView = mView.findViewById(R.id.TextViewMotoCard)
         val textView_date           : TextView = mView.findViewById(R.id.TextViewDateTextCard)
         val btn_view_cost           : TextView = mView.findViewById(R.id.btn_view_cost)
 

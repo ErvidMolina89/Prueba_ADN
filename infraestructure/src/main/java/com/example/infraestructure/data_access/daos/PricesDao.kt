@@ -9,6 +9,6 @@ abstract class PricesDao : BaseDao<PricesModels> {
     @Query("SELECT * FROM PricesModels")
     abstract fun getAllPricesModels(): List<PricesModels>
 
-    @Query("SELECT * FROM PricesModels PM WHERE PM.TypeId = :type")
-    abstract fun getPricesForTypeId(type : Int): List<PricesModels>
+    @Query("SELECT * FROM PricesModels WHERE TypeId = :type ANd TypePrice = :typePrice")
+    abstract fun getPricesForTypeId(type : Int, typePrice: Int): PricesModels
 }

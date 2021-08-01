@@ -23,5 +23,16 @@
     <string name="not_cylinder">Debe Ingresar el cilindraje de la moto</string>
     <string name="not_disponibility">No hay disponibilidad</string>
     <string name="not_placa">Debe Ingresar una placa</string>
+    <string name="edit_text_search">Buscar Placa</string>
+    <string name="list_is_empty">Lista Vacia</string>
+    <string name="add_vehicle">Añadir Vehiculo</string>
+    <string name="cancel">Cancelar</string>
+    <string name="title_dialog">Ingresar Vehiculo</string>
+    <string name="title_car">Carro</string>
+    <string name="title_motocycle">Moto</string>
+    <string name="not_placa_day">El vehiculo no esta autorizado para ingresar</string>
+    <string name="date_input">Fecha de Ingreso:</string>
+    <string name="plate">"Placa: "</string>
+    <string name="btn_coste">Calcular Costo</string>
 
 </resources>

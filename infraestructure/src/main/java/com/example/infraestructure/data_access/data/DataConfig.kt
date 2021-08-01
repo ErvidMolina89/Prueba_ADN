@@ -24,9 +24,9 @@ class DataConfig {
     fun inserPrice(): MutableList<PricesModels> {
         val list = emptyList<PricesModels>().toMutableList()
         list.add(PricesModels(1, 1, 1, 8000.00, null))
-        list.add(PricesModels(1, 1, 2, 1000.00, null))
-        list.add(PricesModels(1, 2, 1, 4000.00, 2000.00))
-        list.add(PricesModels(1, 2, 2, 500.00, 2000.00))
+        list.add(PricesModels(2, 1, 2, 1000.00, null))
+        list.add(PricesModels(3, 2, 1, 4000.00, 2000.00))
+        list.add(PricesModels(4, 2, 2, 500.00, 2000.00))
         return list
     }
 
