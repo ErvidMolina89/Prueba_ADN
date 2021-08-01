@@ -26,19 +26,17 @@ class VehicleService (
         try {
             validationsRelatedToVehicleCreation(vehicle, dateInput)
         }catch (e: InvalidDataException){
-            throw InvalidDataException("")
+            return throw InvalidDataException("")
         }
         return vehicleRepository.insertVehicleDB(vehicle)
     }
 
     private fun validationsRelatedToVehicleCreation(vehicle: VehicleEntity, dateInput: String): Boolean {
         if (!validateEntryDateVehicle(vehicle.plate!!, dateInput)){
-            throw InvalidDataException("Vehicle Parking Not Autorize")
-            return false
+            return throw InvalidDataException("Vehicle Parking Not Autorize")
         }
         if (validateDisponibilityVehicle(vehicle.typeId!!)){
-            throw InvalidDataException("Parking Not Disponibility")
-            return false
+            return throw InvalidDataException("Parking Not Disponibility")
         }
         return true
     }

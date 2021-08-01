@@ -17,7 +17,7 @@ class VehicleEntity {
         if (validatePlateFormat(plate)){
             this.plate = plate
         }else{
-            throw InvalidDataException("Format Incorrect Plate")
+            return throw InvalidDataException("Format Incorrect Plate")
         }
     }
 
