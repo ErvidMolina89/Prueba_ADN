@@ -148,7 +148,14 @@ class MainActivity : AppCompatActivity(),
 
     override fun responseValidateCosteVehicle(checkEntity: CheckEntity) {
         binding.recyclerViewSearchResults.post {
-            App.getContext()?.createToast(checkEntity.totalCost!!.toString())
+            DialogCostVehicle
+                .getInstance()
+                .withText(checkEntity.totalCost?.toString()!!)
+                .withTypeDialog(DialogCostVehicle.TypeDialog.OK)
+                .withActionBtnOk {
+
+                }
+            this.showDialoCostVehicle()
             checkViewModel.getAllCheck()
             binding.editTextSearch.setText("")
             this.hideKeyboard(binding.editTextSearch)

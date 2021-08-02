@@ -35,6 +35,17 @@ fun Context.showDialoAddVehicle(){
     }
 }
 
+fun Context.showDialoCostVehicle(){
+    if(!isAValidContextToDisplayMessage(this)){ return }
+    if(this !is AppCompatActivity){
+        getContextValid(this).showDialoCostVehicle()
+        return
+    }
+    runOnUiThread {
+        DialogCostVehicle.getInstance().showDialogue(supportFragmentManager, TagsDialogue.DialogueCostVehicle.getTags())
+    }
+}
+
 private fun isAValidContextToDisplayMessage(contex: Context) : Boolean{
     return contex is AppCompatActivity || contex is ContextWrapper
 }
