@@ -26,7 +26,7 @@ class CheckService (
     fun validateCosteVehicle(check: VehicleAggregate): CheckEntity {
         val costHours = repositoryPrice.getPricesForTypeIdAndPriceId(check.typeId!!, 2)
         val costDays = repositoryPrice.getPricesForTypeIdAndPriceId(check.typeId!!, 1)
-        val time = check.checkEntity?.dateInput?.convertToFormatDate()?.dateDifference()
+        val time = check.checkEntity?.dateInput?.convertToFormatDate()?.dateDifference(check.checkEntity?.dateExit?.convertToFormatDate()!!)
 
         if(validateTimeLessOneHour(check, costHours, time!!)) {
             check.checkEntity!!.totalCost = cost

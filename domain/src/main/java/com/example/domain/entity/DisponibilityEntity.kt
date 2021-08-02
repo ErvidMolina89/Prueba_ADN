@@ -1,7 +1,5 @@
 package com.example.domain.entity
 
-import com.example.domain.R
-
 class DisponibilityEntity {
 
     var id : Int? = null

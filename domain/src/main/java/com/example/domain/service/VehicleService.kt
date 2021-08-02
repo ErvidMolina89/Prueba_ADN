@@ -26,19 +26,18 @@ class VehicleService (
         try {
             validationsRelatedToVehicleCreation(vehicle, dateInput)
         }catch (e: InvalidDataException){
-            return throw InvalidDataException("")
+            return throw InvalidDataException(e.message)
         }
         return vehicleRepository.insertVehicleDB(vehicle)
     }
 
-    private fun validationsRelatedToVehicleCreation(vehicle: VehicleEntity, dateInput: String): Boolean {
+    private fun validationsRelatedToVehicleCreation(vehicle: VehicleEntity, dateInput: String){
         if (!validateEntryDateVehicle(vehicle.plate!!, dateInput)){
-            return throw InvalidDataException("Vehicle Parking Not Autorize")
+            return throw InvalidDataException("Vehicle Parking Not Autorize why his Plate Init A")
         }
         if (validateDisponibilityVehicle(vehicle.typeId!!)){
             return throw InvalidDataException("Parking Not Disponibility")
         }
-        return true
     }
 
     private fun validateEntryDateVehicle(plate: String, dateInput: String): Boolean{
@@ -47,9 +46,9 @@ class VehicleService (
         val day = calendar.get(Calendar.DAY_OF_WEEK)
         val subString = plate.substring(0, 1)
         if (subString == "A" && (day == Calendar.SUNDAY || day == Calendar.MONDAY)) {
-            return false
+            return true
         }
-        return true
+        return false
     }
 
     private fun validateDisponibilityVehicle (type: Int): Boolean {

@@ -22,7 +22,6 @@ import java.util.*
 
 class DialogAddVehicle private constructor(): DialogFragment() {
 
-    private val T = "DialogAddVehicle"
     private var vehicleEntity: VehicleEntity? = null
     private var today: Date? = null
     private var dateInput: String? = null

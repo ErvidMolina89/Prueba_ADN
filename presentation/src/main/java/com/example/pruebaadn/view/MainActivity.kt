@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.aggregate.VehicleAggregate
 import com.example.domain.entity.CheckEntity
+import com.example.domain.entity.VehicleEntity
+import com.example.domain.exception.InvalidDataException
 import com.example.pruebaadn.R
 import com.example.pruebaadn.base.App
 import com.example.pruebaadn.databinding.ActivityMainBinding
@@ -84,9 +86,14 @@ class MainActivity : AppCompatActivity(),
             .getInstance()
             .withActionBtnOk { vehicleEntity, dateInput ->
                 checkEntity = CheckEntity()
-                checkEntity.dateInput = dateInput
-                checkEntity.plateId = vehicleEntity.plate
-                vehicleViewModel.insertVehicleDB(vehicleEntity, dateInput)
+                try {
+                    checkEntity.CheckEntity(vehicleEntity.plate, dateInput, null, null)
+                    val vehicle = VehicleEntity()
+                    vehicle.VehicleEntity(vehicleEntity.plate!!, vehicleEntity.typeId!!, vehicleEntity.cylinder)
+                    vehicleViewModel.insertVehicleDB(vehicle, dateInput)
+                }catch (e: InvalidDataException){
+                    this.createToast(e.message!!)
+                }
             }
         this.showDialoAddVehicle()
     }

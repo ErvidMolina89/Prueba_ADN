@@ -1,6 +1,5 @@
 package com.example.application.service
 
-import com.example.domain.aggregate.VehicleAggregate
 import com.example.domain.entity.VehicleEntity
 import com.example.domain.service.VehicleService
 

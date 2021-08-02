@@ -16,7 +16,7 @@ class VehicleEntity {
         this.typeId = typeId
         this.cylinder = cylinder
 
-        if (validatePlateFormat(plate)){
+        if (plate != "" && validatePlateFormat(plate)){
             this.plate = plate
         }else{
             return throw InvalidDataException("Format Incorrect Plate")
