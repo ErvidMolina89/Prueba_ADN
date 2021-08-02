@@ -18,6 +18,14 @@ class CheckRepoRoom (private val context: Context) : CheckRepository {
         return DbEstacionamiento.getInstance(context).checkDao().insert(checkEntity.fromModels())
     }
 
+    override fun getCheckModelsPlateId(plate: String): Boolean {
+        val check = DbEstacionamiento.getInstance(context).checkDao().getCheckModelsPlateId(plate)
+        check.forEach {
+            if (it.totalCost == null) return true
+        }
+        return false
+    }
+
     override fun updateCheck(checkEntity: CheckEntity) {
         DbEstacionamiento.getInstance(context).checkDao().update(checkEntity.fromModels())
     }

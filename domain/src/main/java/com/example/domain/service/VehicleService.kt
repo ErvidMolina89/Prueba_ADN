@@ -13,6 +13,7 @@ import java.util.*
 
 class VehicleService (
     private val vehicleRepository: VehicleRepository,
+    private val checkRepository: CheckRepository,
     private val disponibilityRepository: DisponibilityRepository
         ) {
 
@@ -21,14 +22,16 @@ class VehicleService (
     fun insertVehicleDB(vehicle: VehicleEntity, dateInput: String) : Long {
         disponibility = DisponibilityEntity()
         if (vehicleRepository.vehicleExists(vehicle.plate!!)) {
-            return throw InvalidDataException("Vehicle Exist")
+            if (checkRepository.getCheckModelsPlateId(vehicle.plate!!)){
+                return throw InvalidDataException("Vehicle Exist")
+            }else return 0
         }
         try {
             validationsRelatedToVehicleCreation(vehicle, dateInput)
+            return vehicleRepository.insertVehicleDB(vehicle)
         }catch (e: InvalidDataException){
             return throw InvalidDataException(e.message)
         }
-        return vehicleRepository.insertVehicleDB(vehicle)
     }
 
     private fun validationsRelatedToVehicleCreation(vehicle: VehicleEntity, dateInput: String){
@@ -45,10 +48,10 @@ class VehicleService (
         calendar.time = dateInput.convertToFormatDate()
         val day = calendar.get(Calendar.DAY_OF_WEEK)
         val subString = plate.substring(0, 1)
-        if (subString == "A" && (day == Calendar.SUNDAY || day == Calendar.MONDAY)) {
-            return true
+        if (subString == "A" && (day != Calendar.SUNDAY && day != Calendar.MONDAY)) {
+            return false
         }
-        return false
+        return true
     }
 
     private fun validateDisponibilityVehicle (type: Int): Boolean {

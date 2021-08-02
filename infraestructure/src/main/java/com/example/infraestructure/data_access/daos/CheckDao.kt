@@ -9,8 +9,8 @@ import com.example.infraestructure.data_access.models.ConsultCheckAndVehicle
 abstract class CheckDao : BaseDao<CheckModels> {
     @Query("SELECT * FROM CheckModels")
     abstract fun getAllCheckModels(): List<CheckModels>
-    @Query("SELECT * FROM CheckModels WHERE id = :id")
-    abstract fun getCheckModelsId(id:Int): CheckModels
+    @Query("SELECT * FROM CheckModels WHERE PlateId = :plateId")
+    abstract fun getCheckModelsPlateId(plateId:String): List<CheckModels>
     @Query("SELECT * FROM CheckModels")
     abstract fun getAllConsultCheckAndVehicleId(): List<ConsultCheckAndVehicle>
 }

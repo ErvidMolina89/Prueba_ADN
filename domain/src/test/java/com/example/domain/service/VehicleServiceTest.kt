@@ -3,6 +3,7 @@ package com.example.domain.service
 import com.example.domain.entity.DisponibilityEntity
 import com.example.domain.entity.VehicleEntity
 import com.example.domain.exception.InvalidDataException
+import com.example.domain.repository.CheckRepository
 import com.example.domain.repository.DisponibilityRepository
 import com.example.domain.repository.VehicleRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,6 +19,9 @@ class VehicleServiceTest{
     lateinit var vehicleRepository: VehicleRepository
 
     @Mock
+    lateinit var checkRepository: CheckRepository
+
+    @Mock
     lateinit var disponibilityRepository: DisponibilityRepository
 
     private lateinit var vehicleService: VehicleService
@@ -25,7 +29,7 @@ class VehicleServiceTest{
     @Before
     fun setup(){
         initMocks(this)
-        vehicleService = VehicleService(vehicleRepository, disponibilityRepository)
+        vehicleService = VehicleService(vehicleRepository, checkRepository, disponibilityRepository)
     }
 
     @ExperimentalCoroutinesApi

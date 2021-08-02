@@ -7,4 +7,5 @@ interface CheckRepository {
     fun getAllCheck(): MutableList<VehicleAggregate>
     fun updateCheck(checkEntity: CheckEntity)
     fun insertChechVehicle(checkEntity: CheckEntity): Long
+    fun getCheckModelsPlateId(plate: String): Boolean
 }

@@ -23,26 +23,29 @@ class VehicleViewModel (app: Application): AndroidViewModel(app) {
 
     private lateinit var delegate: VehicleViewModelDelegate
     private lateinit var roomVehicle : VehicleRepoRoom
+    private lateinit var roomCheck : CheckRepoRoom
     private lateinit var roomDisponibility : DisponibilityRepoRoom
     private lateinit var service : VehicleService
     private lateinit var application : VehicleApplicationService
 
     init {
         roomVehicle = VehicleRepoRoom(app.applicationContext)
+        roomCheck = CheckRepoRoom(app.applicationContext)
         roomDisponibility = DisponibilityRepoRoom(app.applicationContext)
-        service = VehicleService(roomVehicle, roomDisponibility)
+        service = VehicleService(roomVehicle, roomCheck, roomDisponibility)
         application  = VehicleApplicationService(service)
     }
 
     fun insertVehicleDB(vehicle: VehicleEntity, dateInput: String){
-        try {
-            GlobalScope.launch {
+        GlobalScope.launch {
+            try {
+
                 if (application.insertVehicleDB(vehicle, dateInput) != null) {
                     delegate.responseInsertExit()
                 } else delegate.responseException("No se pudo insertar el Vehiculo")
+            } catch (e: InvalidDataException) {
+                delegate.responseException(e.message)
             }
-        }catch (e: InvalidDataException){
-            delegate.responseException(e.message)
         }
     }
 
