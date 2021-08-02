@@ -1,8 +1,6 @@
 
 ;
 Jenkinsfile,0/c/0c2c5c506cef0ed2d3ad2b7e45e97980b66f5520
-H
-sonar-project.properties,2/5/2538046035efb77ecc44e1fd2eec1e2641594d4c
  
 pInfraestructure/src/main/java/com/example/infraestructure/data_access/models/variant_init/DisponibilityModels.kt,4/1/41405e855c4a4e2c354063e46c9aefe0dce0da1e
 ™
@@ -95,10 +93,6 @@ Idomain/src/main/java/com/example/domain/exception/InvalidDataException.kt,9/5/
 ninfraestructure/src/main/java/com/example/infraestructure/data_access/models/variant_init/TypeVehicleModels.kt,7/5/75830e6b8ceb213c4bc7b1b70167294ec0a78fe4
 ™
 iinfraestructure/src/main/java/com/example/infraestructure/data_access/models/variant_init/PricesModels.kt,0/1/015429e21d730e8457de0ccfa83707e3f76024f0
-u
-Edomain/src/main/java/com/example/domain/entity/DisponibilityEntity.kt,c/e/ce614c2f3d840d2cf17901c758ee249308a4771a
-v
-Fdomain/src/main/java/com/example/domain/value_object/PricesValueObj.kt,a/6/a65804582933133e94d50aae05f2fa8603664e94
 …
 Uinfraestructure/src/main/java/com/example/infraestructure/data_access/daos/BaseDao.kt,7/e/7ea4f055083fe2117385f36fe99a5a14c5bc9d2a
 †
@@ -121,8 +115,6 @@ L
 infraestructure/build.gradle,3/1/31728d1a9eed9110efbd152db8af67b28a98b0e5
 I
 presentation/build.gradle,2/9/29ca4091f3fd866a7d8488b04776c5994c7983b9
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 ‹
 [infraestructure/src/main/java/com/example/infraestructure/data_access/models/CheckModels.kt,f/f/ffda462c4097c5f40bf11006e4a345883cd7eedd
 ‘
@@ -133,12 +125,6 @@ Edomain/src/main/java/com/example/domain/repository/CheckRepository.kt,6/2/6266
 Zpresentation/src/main/java/com/example/pruebaadn/view/interfaces/CheckViewModelDelegate.kt,8/3/8305c1aacd612f20b13c09aee358acc0f1cd01a2
 –
 finfraestructure/src/main/java/com/example/infraestructure/data_access/models/ConsultCheckAndVehicle.kt,d/5/d52154d3bd5d15c346c3859a32c10462bcac364e
-ˆ
-Xinfraestructure/src/main/java/com/example/infraestructure/data_access/data/DataConfig.kt,e/a/ea05cb8479b5d4971bd6ccd1f2790d6c387e97f1
-n
->domain/src/main/java/com/example/domain/util/DateExtensions.kt,d/8/d8988b632c5f4098228463ff10500ff2f86e3381
-z
-Jpresentation/src/main/java/com/example/pruebaadn/utils/DialogAddVehicle.kt,d/6/d645e6b036ba36a0d471e73008ffaafa1849b607
 “
 cinfraestructure/src/main/java/com/example/infraestructure/data_access/mapper/DisponibilityMapper.kt,b/6/b649823fffcb81288a5fb00e29ccc93201f006fa
 ™
@@ -147,10 +133,6 @@ iinfraestructure/src/main/java/com/example/infraestructure/data_access/repositor
 Mdomain/src/main/java/com/example/domain/repository/DisponibilityRepository.kt,0/a/0a895f8f2d4572cf52030045ddfce99e87a7325c
 x
 Hpresentation/src/main/java/com/example/pruebaadn/utils/ExtensionsDate.kt,0/7/07a35008c575ce14f62745487477e8306dc3567f
-l
-<domain/src/test/java/com/example/domain/MainCoroutineRule.kt,a/f/af86bf5832f3df6e0cfe7a470097b28e54d6e317
-€
-Ppresentation/src/main/java/com/example/pruebaadn/view/MainRecyclerViewAdapter.kt,4/0/4070ed245f33232246a862310a2ecb767790f0ea
 ‘
 ainfraestructure/src/main/java/com/example/infraestructure/data_access/repository/PriceRepoRoom.kt,f/b/fb73d1d6b104ee104eaf7d32ca68fc650740d0ae
 u
@@ -159,8 +141,6 @@ Edomain/src/main/java/com/example/domain/repository/PriceRepository.kt,1/d/1d1a
 Winfraestructure/src/main/java/com/example/infraestructure/data_access/daos/PricesDao.kt,8/5/8585f3744d4688b60596ccf6f87c01939012d266
 Œ
 \infraestructure/src/main/java/com/example/infraestructure/data_access/mapper/PricesMapper.kt,c/b/cb95b1669401ec76ddb9781f404833668cc58a21
-p
-@domain/src/main/java/com/example/domain/util/StringExtensions.kt,1/2/1271720bb6e55fe3fd242f632706518515cbc077
 Š
 Zapplication/src/main/java/com/example/application/service/VariantInitApplicationService.kt,9/0/9055066d0d6845c2adc668d47715c7d7bbf27fc9
 —
@@ -171,12 +151,6 @@ u
 Edomain/src/main/java/com/example/domain/service/VariantInitService.kt,5/2/52fad7d8a20d216081bb6d0e8cfb933459eabd5a
 ˆ
 Xpresentation/src/main/java/com/example/pruebaadn/view/view_model/VariantInitViewModel.kt,b/b/bb9ea84e53b903c202b95062c67beadfc28a48ac
-u
-Edomain/src/main/java/com/example/domain/aggregate/VehicleAggregate.kt,3/0/30fab2408181516b0942119324edc4355c113479
-†
-Vapplication/src/main/java/com/example/application/service/VehicleApplicationService.kt,a/6/a69ba1f6d510b88829c7ab097b67ab01d718acc5
-o
-?domain/src/main/java/com/example/domain/entity/VehicleEntity.kt,1/f/1f29bf2c5c8fd458d55b68ad05f9e8e40143533c
 
 ]infraestructure/src/main/java/com/example/infraestructure/data_access/mapper/VehicleMapper.kt,0/8/084339485e7cdb9a58eccf730637a9fca6106f09
 
@@ -185,9 +159,5 @@ o
 cinfraestructure/src/main/java/com/example/infraestructure/data_access/repository/VehicleRepoRoom.kt,8/a/8a15c3f32a50b382fbfe9607e5c45d3cd6b06bbc
 w
 Gdomain/src/main/java/com/example/domain/repository/VehicleRepository.kt,0/3/03f54fe142d813b8c8f10a8d5f247c5eba7959d1
-q
-Adomain/src/main/java/com/example/domain/service/VehicleService.kt,c/d/cd4f40d9da2cb701e2c02cd0077a52c5366ed762
-„
-Tpresentation/src/main/java/com/example/pruebaadn/view/view_model/VehicleViewModel.kt,b/c/bc3ed4c0c5ab7bbe7c242a9678cb055599607b7a
 Œ
 \presentation/src/main/java/com/example/pruebaadn/view/interfaces/VehicleViewModelDelegate.kt,7/c/7cf1a6618b93e1fe940ccfb3ae1d4966f0e8c396
