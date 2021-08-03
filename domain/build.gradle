@@ -64,7 +64,7 @@ task jacocoTestReport(type: JacocoReport, dependsOn: ['testDebugUnitTest']) {
                       'android/**/*.*',
                       '**/data/models/*']
     def debugTree = fileTree(dir: "${buildDir}/build/intermediates/javac/debug", excludes: fileFilter)
-    def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debugUnitTest", excludes: fileFilter)
+    def kotlinDebugTree = fileTree(dir: "${buildDir}/tmp/kotlin-classes/debug", excludes: fileFilter)
     def mainSrc = "${project.projectDir}/src/main/java"
 
     sourceDirectories.from(files([mainSrc]))
