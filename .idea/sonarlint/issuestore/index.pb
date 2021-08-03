@@ -1,6 +1,4 @@
 
-;
-Jenkinsfile,0/c/0c2c5c506cef0ed2d3ad2b7e45e97980b66f5520
  
 pInfraestructure/src/main/java/com/example/infraestructure/data_access/models/variant_init/DisponibilityModels.kt,4/1/41405e855c4a4e2c354063e46c9aefe0dce0da1e
 ™
@@ -115,10 +113,6 @@ v
 Fpresentation/src/main/java/com/example/pruebaadn/utils/TagsDialogue.kt,c/4/c488909089e467fb6ef7dc01212590f56053b1eb
 {
 Kpresentation/src/main/java/com/example/pruebaadn/utils/ExtensionsContext.kt,6/c/6c18681f902456d4904069499c145f8890ecec02
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
-I
-presentation/build.gradle,2/9/29ca4091f3fd866a7d8488b04776c5994c7983b9
 u
 Edomain/src/main/java/com/example/domain/service/VariantInitService.kt,5/2/52fad7d8a20d216081bb6d0e8cfb933459eabd5a
 v
