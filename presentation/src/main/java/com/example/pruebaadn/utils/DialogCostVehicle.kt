@@ -1,5 +1,6 @@
 package com.example.pruebaadn.utils
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -14,13 +15,16 @@ import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.Guideline
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
+import com.example.domain.model.VehicleEntity
 import com.example.pruebaadn.R
 
-class DialogCostVehicle private constructor(): DialogFragment() {
+class DialogCostVehicle : DialogFragment() {
 
     companion object{
         private var showingDialog = false
+        @SuppressLint("StaticFieldLeak")
         private var instance : DialogCostVehicle?= null
+        private var routeText : String ?= null
 
         fun getInstance() : DialogCostVehicle {
             if(instance == null )
@@ -48,6 +52,22 @@ class DialogCostVehicle private constructor(): DialogFragment() {
         fillView()
         addListeners()
         return mainContainer
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        findsViewElements()
+        fillView()
+        addListeners()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(routeText != null){
+            details_message?.visibility = View.VISIBLE
+            details_message?.setText(routeText!!)
+        }
     }
 
     private var image_dialogue_cost : ImageView?= null
@@ -100,7 +120,8 @@ class DialogCostVehicle private constructor(): DialogFragment() {
 
     private fun cleanElementsOfSight(){
         invokesActionOk = null
-        details_message?.setText("")
+        details_message = null
+        routeText = null
     }
 
     override fun dismiss() {
@@ -148,9 +169,8 @@ class DialogCostVehicle private constructor(): DialogFragment() {
         return this
     }
 
-    private var routeText : String ?= null
     fun withText(routeString : String): DialogCostVehicle {
-        this.routeText = routeString
+        routeText = routeString
         return this
     }
 

@@ -1,6 +1,6 @@
 package com.example.infrastructure.data_access.mapper
 
-import com.example.domain.entity.DisponibilityEntity
+import com.example.domain.model.DisponibilityEntity
 import com.example.infraestructure.data_access.models.variant_init.DisponibilityModels
 
 fun DisponibilityEntity.fromModels(): DisponibilityModels {

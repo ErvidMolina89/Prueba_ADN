@@ -1,15 +1,15 @@
 package com.example.infrastructure.data_access.repository
 
 import android.content.Context
-import com.example.domain.repository.VariantInitRepository
+import com.example.domain.repository.InitializationOfTheDefaultVariablesRepository
 import com.example.infraestructure.data_access.DbEstacionamiento
 import com.example.infraestructure.data_access.data.DataConfig
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class VariantInitRepoRoom  (private val context: Context) : VariantInitRepository{
+class InitializationOfTheDefaultVariablesRoom  (private val context: Context) : InitializationOfTheDefaultVariablesRepository{
 
-    override fun variantInitRepository() {
+    override fun InitializationOfTheDefaultVariables() {
         val list = DbEstacionamiento.getInstance(context).typeVehicleDao().getAllTypeVehicleModels()
         if (list.size == 0){
             GlobalScope.launch {

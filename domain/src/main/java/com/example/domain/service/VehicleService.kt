@@ -1,9 +1,9 @@
 package com.example.domain.service
 
-import com.example.domain.aggregate.VehicleAggregate
-import com.example.domain.entity.CheckEntity
-import com.example.domain.entity.DisponibilityEntity
-import com.example.domain.entity.VehicleEntity
+import android.content.Context
+import com.example.domain.R
+import com.example.domain.model.DisponibilityEntity
+import com.example.domain.model.VehicleEntity
 import com.example.domain.exception.InvalidDataException
 import com.example.domain.repository.CheckRepository
 import com.example.domain.repository.DisponibilityRepository
@@ -18,28 +18,27 @@ class VehicleService (
         ) {
 
     private lateinit var disponibility: DisponibilityEntity
+    private val WhenAvailabilityIsZero = 0
+    private val ResponseWhenVehicleExistsButHasNoInvoice: Long = 0
+    private val DecreaseInDisponibility = 1
 
-    fun insertVehicleDB(vehicle: VehicleEntity, dateInput: String) : Long {
+    fun insertDataBase(vehicle: VehicleEntity, dateInput: String) : Long {
         disponibility = DisponibilityEntity()
         if (vehicleRepository.vehicleExists(vehicle.plate!!)) {
-            if (checkRepository.getCheckModelsPlateId(vehicle.plate!!)){
-                return throw InvalidDataException("Vehicle Exist")
-            }else return 0
+            return if (checkRepository.getModelsForPlateId(vehicle.plate!!)){
+                throw InvalidDataException(R.string.vehicle_exists.toString())
+            }else ResponseWhenVehicleExistsButHasNoInvoice
         }
-        try {
-            validationsRelatedToVehicleCreation(vehicle, dateInput)
-            return vehicleRepository.insertVehicleDB(vehicle)
-        }catch (e: InvalidDataException){
-            return throw InvalidDataException(e.message)
-        }
+        validationsRelatedToVehicleCreation(vehicle, dateInput)
+        return vehicleRepository.insertDataBase(vehicle)
     }
 
     private fun validationsRelatedToVehicleCreation(vehicle: VehicleEntity, dateInput: String){
         if (!validateEntryDateVehicle(vehicle.plate!!, dateInput)){
-            return throw InvalidDataException("Vehicle Parking Not Autorize why his Plate Init A")
+            throw InvalidDataException(R.string.autorize_not_parking.toString())
         }
         if (validateDisponibilityVehicle(vehicle.typeId!!)){
-            return throw InvalidDataException("Parking Not Disponibility")
+            throw InvalidDataException(R.string.parking_not_available.toString())
         }
     }
 
@@ -56,7 +55,7 @@ class VehicleService (
 
     private fun validateDisponibilityVehicle (type: Int): Boolean {
         disponibility = disponibilityRepository.getDisponibilityForTypeId(type)
-        if(disponibility.count!! <= 0){
+        if(disponibility.count!! <= WhenAvailabilityIsZero){
             return true
         }
         updateDisponibility(disponibility)
@@ -64,8 +63,8 @@ class VehicleService (
     }
 
     private fun updateDisponibility(disponibility: DisponibilityEntity) {
-        disponibility.count = disponibility.count!! - 1
-        disponibilityRepository.updateDisponibility(disponibility)
+        disponibility.count = disponibility.count!! - DecreaseInDisponibility
+        disponibilityRepository.update(disponibility)
     }
 
 }

@@ -1,7 +1,7 @@
 package com.example.infrastructure.data_access.mapper
 
 import com.example.domain.aggregate.VehicleAggregate
-import com.example.domain.entity.CheckEntity
+import com.example.domain.model.CheckEntity
 import com.example.infraestructure.data_access.models.CheckModels
 import com.example.infraestructure.data_access.models.ConsultCheckAndVehicle
 

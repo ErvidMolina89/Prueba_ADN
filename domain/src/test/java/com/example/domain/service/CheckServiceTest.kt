@@ -1,14 +1,14 @@
 package com.example.domain.service
 
 import com.example.domain.aggregate.VehicleAggregate
-import com.example.domain.entity.CheckEntity
+import com.example.domain.model.CheckEntity
 import com.example.domain.exception.InvalidDataException
 import com.example.domain.repository.CheckRepository
 import com.example.domain.repository.PriceRepository
-import com.example.domain.value_object.PricesValueObj
-import org.junit.Assert.assertNotNull
+import com.example.domain.model.PricesEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -37,18 +37,18 @@ class CheckServiceTest{
         //Arrange
         val aggregate = VehicleAggregate()
         val checkEntity = CheckEntity()
-        var price = PricesValueObj()
+        var price = PricesEntity()
         val dateInput = "2021-07-30T20:00:00"
         val dateExit = "2021-07-31T23:00:00"
         checkEntity.CheckEntity("LKJ456", dateInput, dateExit, null)
         aggregate.VehicleAggregate("LKJ456", 1, null, checkEntity)
         price.PricesValueObj( 1, 1, 8000.00, null)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(1, 1)).thenReturn(price)
-        price = PricesValueObj()
+        price = PricesEntity()
         price.PricesValueObj( 1, 2, 1000.00, null)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(1, 2)).thenReturn(price)
         //Act
-        val action = checkService.validateCosteVehicle(aggregate)
+        val action = checkService.validateCostVehicle(aggregate)
         //Assert
         assertEquals(11000.0 , action.totalCost)
     }
@@ -59,18 +59,18 @@ class CheckServiceTest{
         //Arrange
         val aggregate = VehicleAggregate()
         val checkEntity = CheckEntity()
-        var price = PricesValueObj()
+        var price = PricesEntity()
         val dateInput = "2021-07-31T20:00:00"
         val dateExit = "2021-07-31T20:00:00"
         checkEntity.CheckEntity("LKJ456", dateInput, dateExit, null)
         aggregate.VehicleAggregate("LKJ456", 1, null, checkEntity)
         price.PricesValueObj( 1, 1, 8000.00, null)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(1, 1)).thenReturn(price)
-        price = PricesValueObj()
+        price = PricesEntity()
         price.PricesValueObj( 1, 2, 1000.00, null)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(1, 2)).thenReturn(price)
         //Act
-        val action = checkService.validateCosteVehicle(aggregate)
+        val action = checkService.validateCostVehicle(aggregate)
         //Assert
         assertEquals(1000.0 , action.totalCost)
     }
@@ -81,18 +81,18 @@ class CheckServiceTest{
         //Arrange
         val aggregate = VehicleAggregate()
         val checkEntity = CheckEntity()
-        var price = PricesValueObj()
+        var price = PricesEntity()
         val dateInput = "2021-07-31T11:59:00"
         val dateExit = "2021-08-01T10:10:00"
         checkEntity.CheckEntity("LKJ456", dateInput, dateExit, null)
         aggregate.VehicleAggregate("LKJ456", 2, "650", checkEntity)
         price.PricesValueObj( 2, 1, 4000.00, 2000.00)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(2, 1)).thenReturn(price)
-        price = PricesValueObj()
+        price = PricesEntity()
         price.PricesValueObj( 2, 2, 500.00, 2000.00)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(2, 2)).thenReturn(price)
         //Act
-        val action = checkService.validateCosteVehicle(aggregate)
+        val action = checkService.validateCostVehicle(aggregate)
         //Assert
         assertEquals(6000.0 , action.totalCost)
     }
@@ -103,18 +103,18 @@ class CheckServiceTest{
         //Arrange
         val aggregate = VehicleAggregate()
         val checkEntity = CheckEntity()
-        var price = PricesValueObj()
+        var price = PricesEntity()
         val dateInput = "2021-08-01T09:30:00"
         val dateExit = "2021-08-01T10:10:00"
         checkEntity.CheckEntity("LKJ456", dateInput, dateExit, null)
         aggregate.VehicleAggregate("LKJ456", 2, "650", checkEntity)
         price.PricesValueObj( 2, 1, 4000.00, 2000.00)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(2, 1)).thenReturn(price)
-        price = PricesValueObj()
+        price = PricesEntity()
         price.PricesValueObj( 2, 2, 500.00, 2000.00)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(2, 2)).thenReturn(price)
         //Act
-        val action = checkService.validateCosteVehicle(aggregate)
+        val action = checkService.validateCostVehicle(aggregate)
         //Assert
         assertEquals(2500.0 , action.totalCost)
     }
@@ -125,18 +125,18 @@ class CheckServiceTest{
         //Arrange
         val aggregate = VehicleAggregate()
         val checkEntity = CheckEntity()
-        var price = PricesValueObj()
+        var price = PricesEntity()
         val dateInput = "2021-08-01T09:30:00"
         val dateExit = "2021-08-01T10:10:00"
         checkEntity.CheckEntity("LKJ456", dateInput, dateExit, null)
         aggregate.VehicleAggregate("LKJ456", 2, "450", checkEntity)
         price.PricesValueObj( 2, 1, 4000.00, 2000.00)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(2, 1)).thenReturn(price)
-        price = PricesValueObj()
+        price = PricesEntity()
         price.PricesValueObj( 2, 2, 500.00, 2000.00)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(2, 2)).thenReturn(price)
         //Act
-        val action = checkService.validateCosteVehicle(aggregate)
+        val action = checkService.validateCostVehicle(aggregate)
         //Assert
         assertEquals(500.0 , action.totalCost)
     }
@@ -147,18 +147,18 @@ class CheckServiceTest{
         //Arrange
         val aggregate = VehicleAggregate()
         val checkEntity = CheckEntity()
-        var price = PricesValueObj()
+        var price = PricesEntity()
         val dateInput = "2021-08-01T09:10:00"
         val dateExit = "2021-08-02T20:10:00"
         checkEntity.CheckEntity("LKJ456", dateInput, dateExit, null)
         aggregate.VehicleAggregate("LKJ456", 2, "450", checkEntity)
         price.PricesValueObj( 2, 1, 4000.00, 2000.00)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(2, 1)).thenReturn(price)
-        price = PricesValueObj()
+        price = PricesEntity()
         price.PricesValueObj( 2, 2, 500.00, 2000.00)
         `when`(repositoryPrice.getPricesForTypeIdAndPriceId(2, 2)).thenReturn(price)
         //Act
-        val action = checkService.validateCosteVehicle(aggregate)
+        val action = checkService.validateCostVehicle(aggregate)
         //Assert
         assertEquals(8000.0 , action.totalCost)
     }
@@ -169,11 +169,11 @@ class CheckServiceTest{
         //Arrange
         val checkEntity = CheckEntity()
         checkEntity.CheckEntity("ADF456","2021-07-30T20:00:00", null, null)
-        `when`(repositoryCheck.insertChechVehicle(checkEntity)).thenReturn(1)
+        `when`(repositoryCheck.insertInvoice(checkEntity)).thenReturn(1)
 
         try {
             //Act
-            val action = checkService.insertChechVehicle(checkEntity)
+            val action = checkService.insertCheckVehicle(checkEntity)
             //Assert
             assertEquals(1, action)
         }catch (e: InvalidDataException){
@@ -193,7 +193,7 @@ class CheckServiceTest{
         aggregate.VehicleAggregate("LKJ456", 2, "450", checkEntity)
         list.add(aggregate)
 
-        `when`(repositoryCheck.getAllCheck()).thenReturn(list)
+        `when`(repositoryCheck.getAll()).thenReturn(list)
         //Act
         val action = checkService.getAllCheck()
         //Assert

@@ -1,7 +1,7 @@
 package com.example.pruebaadn.view.interfaces
 
 import com.example.domain.aggregate.VehicleAggregate
-import com.example.domain.entity.CheckEntity
+import com.example.domain.model.CheckEntity
 
 interface CheckViewModelDelegate {
     fun responseEmptyAllCheck()

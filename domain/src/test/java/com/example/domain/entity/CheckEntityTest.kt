@@ -1,13 +1,16 @@
 package com.example.domain.entity
 
+import com.example.domain.R
 import com.example.domain.exception.InvalidDataException
-import org.junit.Assert.*
+import com.example.domain.model.CheckEntity
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Test
 
 class CheckEntityTest{
 
     @Test
-    fun CheckEntity_CreateCheckWithCorrect_Success(){
+    fun checkEntity_CreateCheckWithCorrect_Success(){
         // Arrange
         val expected = CheckEntity()
 
@@ -21,32 +24,30 @@ class CheckEntityTest{
     }
 
     @Test
-    fun CheckEntity_CreateCheckWithNullPlate_Failure(){
+    fun checkEntity_CreateCheckWithNullPlate_Failure(){
         // Arrange
         val expected = CheckEntity()
-        val messError = "No se cuenta con los datos minimos para crear el objeto"
 
         try {
             //Act
             expected.CheckEntity(null, "2021-08-01T20:00:00", null, null)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.not_minimun_data_create_object.toString(), e.message)
         }
     }
 
     @Test
-    fun CheckEntity_CreateCheckWithNullDateinput_Failure(){
+    fun checkEntity_CreateCheckWithNullDateinput_Failure(){
         // Arrange
         val expected = CheckEntity()
-        val messError = "No se cuenta con los datos minimos para crear el objeto"
 
         try {
             //Act
             expected.CheckEntity("GHT456", null, null, null)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.not_minimun_data_create_object.toString(), e.message)
         }
     }
 

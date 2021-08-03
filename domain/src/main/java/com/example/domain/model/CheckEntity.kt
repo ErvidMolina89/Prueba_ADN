@@ -1,5 +1,6 @@
-package com.example.domain.entity
+package com.example.domain.model
 
+import com.example.domain.R
 import com.example.domain.exception.InvalidDataException
 
 class CheckEntity {
@@ -15,7 +16,7 @@ class CheckEntity {
         if (!plateId.isNullOrEmpty() && !dateInput.isNullOrEmpty()){
             this.plateId = plateId
             this.dateInput = dateInput
-        } else return throw InvalidDataException("No se cuenta con los datos minimos para crear el objeto")
+        } else throw InvalidDataException(R.string.not_minimun_data_create_object.toString())
     }
 
 }

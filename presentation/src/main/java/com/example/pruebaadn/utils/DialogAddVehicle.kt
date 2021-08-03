@@ -13,21 +13,21 @@ import androidx.constraintlayout.widget.Guideline
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.example.domain.aggregate.VehicleAggregate
-import com.example.domain.entity.CheckEntity
-import com.example.domain.entity.VehicleEntity
+import com.example.domain.model.CheckEntity
+import com.example.domain.model.VehicleEntity
 import com.example.pruebaadn.R
 import com.example.pruebaadn.base.App
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 
-class DialogAddVehicle private constructor(): DialogFragment() {
+class DialogAddVehicle: DialogFragment() {
 
     private var vehicleEntity: VehicleEntity? = null
     private var today: Date? = null
     private var dateInput: String? = null
 
     companion object{
-        private var showingDialog = false
+        var showingDialog = false
         @SuppressLint("StaticFieldLeak")
         private var instance : DialogAddVehicle?= null
 
@@ -53,12 +53,24 @@ class DialogAddVehicle private constructor(): DialogFragment() {
         mainContainer = inflater.inflate(R.layout.dialog_add_vehicle,null,false)
         isCancelable = false
 
+        return mainContainer
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         findsViewElements()
         addListenersButton()
         addListenersRadioButton()
         vehicleEntity = VehicleEntity()
-        vehicleEntity?.typeId = 1
-        return mainContainer
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(radio_motocycle?.isChecked == true){
+            vehicleEntity?.typeId = 2
+            edit_cylinder_container?.show()
+        }else vehicleEntity?.typeId = 1
     }
 
     private var image_dialog : ImageView?= null

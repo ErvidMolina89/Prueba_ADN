@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="autorize_not_parking">The vehicle is not authorized to enter</string>
+    <string name="vehicle_exists">This vehicle exists</string>
+    <string name="parking_not_available">The parking lot is not available</string>
+    <string name="not_minimun_data_create_object">You do not have the minimum data to create the object.</string>
+    <string name="format_incorrect_plate">Format Incorrect Plate</string>
+</resources>

@@ -36,5 +36,7 @@
     <string name="btn_coste">Calculate Coste</string>
     <string name="btn_accept">Accept</string>
     <string name="description">Description</string>
+    <string name="not_insert_vehicle">Vehicle could not be inserted</string>
+    <string name="invoice_not_calculated">Invoice could not be calculated</string>
 
 </resources>

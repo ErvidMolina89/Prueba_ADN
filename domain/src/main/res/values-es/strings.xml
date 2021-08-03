@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="autorize_not_parking">El vehículo no esta autorizado para ingresar</string>
+    <string name="parking_not_available">El parqueadero no cuenta con disponibilidad</string>
+    <string name="vehicle_exists">Este Vehículo no existe</string>
+    <string name="not_minimun_data_create_object">No tiene los datos mínimos para crear el objeto</string>
+    <string name="format_incorrect_plate">Formato de placa incorrecto</string>
+</resources>

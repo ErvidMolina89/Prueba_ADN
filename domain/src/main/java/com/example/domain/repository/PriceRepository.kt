@@ -1,7 +1,7 @@
 package com.example.domain.repository
 
-import com.example.domain.value_object.PricesValueObj
+import com.example.domain.model.PricesEntity
 
 interface PriceRepository {
-    fun getPricesForTypeIdAndPriceId(type: Int, typePrice: Int): PricesValueObj
+    fun getPricesForTypeIdAndPriceId(type: Int, typePrice: Int): PricesEntity
 }

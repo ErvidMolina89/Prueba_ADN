@@ -1,5 +1,7 @@
-package com.example.domain.entity
+package com.example.domain.model
 
+import android.content.Context
+import com.example.domain.R
 import com.example.domain.exception.InvalidDataException
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -19,7 +21,7 @@ class VehicleEntity {
         if (plate != "" && validatePlateFormat(plate)){
             this.plate = plate
         }else{
-            return throw InvalidDataException("Format Incorrect Plate")
+            throw InvalidDataException(R.string.format_incorrect_plate.toString())
         }
     }
 

@@ -1,7 +1,10 @@
 package com.example.domain.entity
 
+import com.example.domain.R
 import com.example.domain.exception.InvalidDataException
-import org.junit.Assert.*
+import com.example.domain.model.VehicleEntity
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Test
 
 class VehicleEntityTest{
@@ -27,7 +30,6 @@ class VehicleEntityTest{
         // Arrange
         val plate = "adh456"
         val type  = 1
-        val messError = "Format Incorrect Plate"
         val expected = VehicleEntity()
 
         try {
@@ -35,7 +37,7 @@ class VehicleEntityTest{
             expected.VehicleEntity(plate, type, null)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.format_incorrect_plate.toString(), e.message)
         }
     }
 
@@ -44,7 +46,6 @@ class VehicleEntityTest{
         // Arrange
         val plate = "Fdh456"
         val type  = 1
-        val messError = "Format Incorrect Plate"
         val expected = VehicleEntity()
 
         try {
@@ -52,7 +53,7 @@ class VehicleEntityTest{
             expected.VehicleEntity(plate, type, null)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.format_incorrect_plate.toString(), e.message)
         }
     }
 
@@ -61,7 +62,6 @@ class VehicleEntityTest{
         // Arrange
         val plate = "ABD"
         val type  = 1
-        val messError = "Format Incorrect Plate"
         val expected = VehicleEntity()
 
         try {
@@ -69,7 +69,7 @@ class VehicleEntityTest{
             expected.VehicleEntity(plate, type, null)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.format_incorrect_plate.toString(), e.message)
         }
     }
 
@@ -78,7 +78,6 @@ class VehicleEntityTest{
         // Arrange
         val plate = "ABDG45"
         val type  = 1
-        val messError = "Format Incorrect Plate"
         val expected = VehicleEntity()
 
         try {
@@ -86,7 +85,7 @@ class VehicleEntityTest{
             expected.VehicleEntity(plate, type, null)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.format_incorrect_plate.toString(), e.message)
         }
     }
 
@@ -95,7 +94,6 @@ class VehicleEntityTest{
         // Arrange
         val plate = "AB4545"
         val type  = 1
-        val messError = "Format Incorrect Plate"
         val expected = VehicleEntity()
 
         try {
@@ -103,7 +101,7 @@ class VehicleEntityTest{
             expected.VehicleEntity(plate, type, null)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.format_incorrect_plate.toString(), e.message)
         }
     }
 
@@ -112,7 +110,6 @@ class VehicleEntityTest{
         // Arrange
         val plate = "ABDG456"
         val type  = 1
-        val messError = "Format Incorrect Plate"
         val expected = VehicleEntity()
 
         try {
@@ -120,7 +117,7 @@ class VehicleEntityTest{
             expected.VehicleEntity(plate, type, null)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.format_incorrect_plate.toString(), e.message)
         }
     }
 
@@ -129,7 +126,6 @@ class VehicleEntityTest{
         // Arrange
         val plate = ""
         val type  = 1
-        val messError = "Format Incorrect Plate"
         val expected = VehicleEntity()
 
         try {
@@ -137,7 +133,7 @@ class VehicleEntityTest{
             expected.VehicleEntity(plate, type, null)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.format_incorrect_plate.toString(), e.message)
         }
     }
 

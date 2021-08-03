@@ -1,13 +1,15 @@
 package com.example.domain.service
 
-import com.example.domain.entity.DisponibilityEntity
-import com.example.domain.entity.VehicleEntity
+import com.example.domain.R
+import com.example.domain.model.DisponibilityEntity
+import com.example.domain.model.VehicleEntity
 import com.example.domain.exception.InvalidDataException
 import com.example.domain.repository.CheckRepository
 import com.example.domain.repository.DisponibilityRepository
 import com.example.domain.repository.VehicleRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
@@ -15,6 +17,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations.initMocks
 
 class VehicleServiceTest{
+
     @Mock
     lateinit var vehicleRepository: VehicleRepository
 
@@ -46,7 +49,7 @@ class VehicleServiceTest{
 
         try {
             //Act
-            val action = vehicleService.insertVehicleDB(entity, dateInput)
+            val action = vehicleService.insertDataBase(entity, dateInput)
             //Assert
             assertNotNull(action)
         }catch (e: InvalidDataException){
@@ -61,16 +64,15 @@ class VehicleServiceTest{
         val entity = VehicleEntity()
         entity.VehicleEntity("RFR456", 1, null)
         val dateInput = "2021-08-01T12:00:00"
-        val messError = "Vehicle Exist"
 
         `when`(vehicleRepository.vehicleExists("RFR456")).thenReturn(true)
 
         try {
             //Act
-            vehicleService.insertVehicleDB(entity, dateInput)
+            vehicleService.insertDataBase(entity, dateInput)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.vehicle_exists.toString(), e.message)
         }
     }
 
@@ -85,10 +87,10 @@ class VehicleServiceTest{
 
         try {
             //Act
-            vehicleService.insertVehicleDB(entity, dateInput)
+            vehicleService.insertDataBase(entity, dateInput)
         }catch (e: InvalidDataException){
             //Assert
-            assertEquals(messError, e.message)
+            assertEquals(R.string.autorize_not_parking.toString(), e.message)
         }
     }
 
@@ -106,7 +108,7 @@ class VehicleServiceTest{
 
         try {
             //Act
-            val action = vehicleService.insertVehicleDB(entity, dateInput)
+            val action = vehicleService.insertDataBase(entity, dateInput)
             //Assert
             assertNotNull(action)
         }catch (e: InvalidDataException){

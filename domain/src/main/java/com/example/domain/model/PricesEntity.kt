@@ -1,6 +1,6 @@
-package com.example.domain.value_object
+package com.example.domain.model
 
-class PricesValueObj {
+class PricesEntity {
     var typeId: Int? = null
     var typePrice: Int? = null
     var value: Double? = null

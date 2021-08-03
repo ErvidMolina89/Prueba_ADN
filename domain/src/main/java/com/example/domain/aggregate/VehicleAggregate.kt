@@ -1,6 +1,6 @@
 package com.example.domain.aggregate
 
-import com.example.domain.entity.CheckEntity
+import com.example.domain.model.CheckEntity
 
 class VehicleAggregate {
     var plate : String? = null

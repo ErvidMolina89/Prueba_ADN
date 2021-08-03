@@ -1,17 +1,17 @@
 package com.example.pruebaadn.view
 
-import android.annotation.SuppressLint
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.WindowManager
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.aggregate.VehicleAggregate
-import com.example.domain.entity.CheckEntity
-import com.example.domain.entity.VehicleEntity
+import com.example.domain.model.CheckEntity
+import com.example.domain.model.VehicleEntity
 import com.example.domain.exception.InvalidDataException
 import com.example.pruebaadn.R
 import com.example.pruebaadn.base.App
@@ -22,6 +22,7 @@ import com.example.pruebaadn.view.interfaces.VehicleViewModelDelegate
 import com.example.pruebaadn.view.view_model.*
 import java.util.*
 
+
 class MainActivity : AppCompatActivity(),
             CheckViewModelDelegate, VehicleViewModelDelegate {
 
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity(),
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var checkEntity: CheckEntity
-    private lateinit var listVehicleAggregation : MutableList<VehicleAggregate>
     private var adapter: MainRecyclerViewAdapter = MainRecyclerViewAdapter(this, emptyList<VehicleAggregate>().toMutableList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +47,14 @@ class MainActivity : AppCompatActivity(),
         setContentView(binding.root)
         App.setContext(this)
 
-        variantInitViewModel.validateDbAndInsertVariablesInit()
-        checkViewModel.getAllCheck()
+    }
 
+    override fun onStart() {
+        super.onStart()
+        variantInitViewModel.validateDbAndInsertVariablesInit()
+        if(listVehicleAggregation.size == 0){
+            checkViewModel.getAllCheck()
+        }
         onStyleRecycler()
         eventAddVehicle()
         listenerRecycler()
@@ -92,7 +97,7 @@ class MainActivity : AppCompatActivity(),
                     vehicle.VehicleEntity(vehicleEntity.plate!!, vehicleEntity.typeId!!, vehicleEntity.cylinder)
                     vehicleViewModel.insertVehicleDB(vehicle, dateInput)
                 }catch (e: InvalidDataException){
-                    this.createToast(e.message!!)
+                    this.createToast(this.getString(e.message!!.toInt()))
                 }
             }
         this.showDialoAddVehicle()
@@ -105,8 +110,10 @@ class MainActivity : AppCompatActivity(),
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    if(p0.toString() != "") {
                         adapter.setData(filterListUser(p0.toString()))
-                    }
+                    }else adapter.setData(listVehicleAggregation)
+                }
 
             })
     }
@@ -124,7 +131,7 @@ class MainActivity : AppCompatActivity(),
     override fun responseEmptyAllCheck() {
         binding.editTextSearch.post {
             adapter.setData(emptyList<VehicleAggregate>().toMutableList())
-            App.getContext()?.createToast(getString(R.string.list_is_empty))
+            this.createToast(getString(R.string.list_is_empty))
         }
     }
 
@@ -164,5 +171,9 @@ class MainActivity : AppCompatActivity(),
 
     override fun responseInsertExit() {
         checkViewModel.insertCheckVehicle(checkEntity)
+    }
+
+    companion object{
+        private var listVehicleAggregation : MutableList<VehicleAggregate> = emptyList<VehicleAggregate>().toMutableList()
     }
 }

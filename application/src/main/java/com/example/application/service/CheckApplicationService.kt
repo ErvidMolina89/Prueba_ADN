@@ -1,20 +1,20 @@
 package com.example.application.service
 
 import com.example.domain.aggregate.VehicleAggregate
-import com.example.domain.entity.CheckEntity
+import com.example.domain.model.CheckEntity
 import com.example.domain.service.CheckService
 
 class CheckApplicationService (private val service: CheckService) {
 
-    fun getAllCheck(): MutableList<VehicleAggregate>{
+    fun getAllC(): MutableList<VehicleAggregate>{
         return service.getAllCheck()
     }
 
-    fun insertChechVehicle(checkEntity: CheckEntity): Long {
-        return service.insertChechVehicle(checkEntity)
+    fun insertInvoice(checkEntity: CheckEntity): Long {
+        return service.insertCheckVehicle(checkEntity)
     }
 
-    fun validateCosteVehicle(checkAggregate: VehicleAggregate): CheckEntity {
-        return service.validateCosteVehicle(checkAggregate)
+    fun validateCosteInvoiceVehicle(checkAggregate: VehicleAggregate): CheckEntity {
+        return service.validateCostVehicle(checkAggregate)
     }
 }
