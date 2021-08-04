@@ -35,7 +35,6 @@ class VehicleViewModel (app: Application): AndroidViewModel(app) {
     fun insertVehicleDB(vehicle: VehicleEntity, dateInput: String){
         GlobalScope.launch {
             try {
-
                 if (application.insertDataBase(vehicle, dateInput) != null) {
                     delegate.responseInsertExit()
                 } else delegate.responseException(App.getContext()?.getString(R.string.not_insert_vehicle))

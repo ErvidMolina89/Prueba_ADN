@@ -48,16 +48,16 @@ class MainActivity : AppCompatActivity(),
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        variantInitViewModel.validateDbAndInsertVariablesInit()
-        if(listVehicleAggregation.size == 0){
-            checkViewModel.getAllCheck()
-        }
-        onStyleRecycler()
-        eventAddVehicle()
+    override fun onResume() {
+        super.onResume()
         listenerRecycler()
         listenerEditTextSearch()
+        onStyleRecycler()
+        eventAddVehicle()
+        if(listVehicleAggregation.size == 0){
+            checkViewModel.getAllCheck()
+            variantInitViewModel.validateDbAndInsertVariablesInit()
+        } else adapter.setData(listVehicleAggregation)
     }
 
     private fun onStyleRecycler() {

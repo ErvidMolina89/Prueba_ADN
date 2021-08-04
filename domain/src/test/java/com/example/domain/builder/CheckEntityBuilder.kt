@@ -23,7 +23,7 @@ class CheckEntityBuilder {
         return this
     }
 
-    fun buildCheck(): CheckEntity {
+    fun build(): CheckEntity {
         val check = CheckEntity()
         check.CheckEntity(plateId, dateInput, dateExit, null)
         return check

@@ -14,7 +14,7 @@ class CostFactory {
             TypeVehicleEnum.MOTOCYCLE.getTags() -> {
                 if (check.cylinder!!.toInt() >= motorcycleCylinderGreaterThan500){
                     ChargeVehicleMotocycleGreater500()
-                } else ChargeVehicleMotocycle()
+                } else ChargeVehicle()
             }
             else -> {ChargeVehicle()}
         }

@@ -56,25 +56,25 @@ class EntityObjectMother {
             return CheckEntityBuilder()
                 .withPlate("AFG456")
                 .withDateInput("2021-08-01T20:00:00")
-                .buildCheck()
+                .build()
         }
         fun createCheckkWithNullPlateFailure(): CheckEntity {
             return CheckEntityBuilder()
                 .withPlate(null)
                 .withDateInput("2021-08-01T20:00:00")
-                .buildCheck()
+                .build()
         }
         fun createCheckkWithNullDateInputFailure(): CheckEntity {
             return CheckEntityBuilder()
                 .withPlate("GHT456")
                 .withDateInput(null)
-                .buildCheck()
+                .build()
         }
         fun enterCorrectCheckVehicleSuccess(): CheckEntity {
             return CheckEntityBuilder()
                 .withPlate("THF456")
                 .withDateInput("2021-07-30T20:00:00")
-                .buildCheck()
+                .build()
         }
         //DisponibilityEntity
         fun disponibilityCar(): DisponibilityEntity {
@@ -119,7 +119,7 @@ class EntityObjectMother {
                 .withPlate("LKJ456")
                 .withDateInput("2021-07-30T20:00:00")
                 .withDateExit("2021-07-31T23:00:00")
-                .buildCheck()
+                .build()
             return VehicleAggregateBuilder()
                 .withPlate("LKJ456")
                 .withTypeId(1)
@@ -131,7 +131,7 @@ class EntityObjectMother {
                 .withPlate("LKJ456")
                 .withDateInput("2021-07-31T20:00:00")
                 .withDateExit("2021-07-31T20:00:00")
-                .buildCheck()
+                .build()
             return VehicleAggregateBuilder()
                 .withPlate("LKJ456")
                 .withTypeId(1)
@@ -143,7 +143,7 @@ class EntityObjectMother {
                 .withPlate("LKJ456")
                 .withDateInput("2021-07-31T11:59:00")
                 .withDateExit("2021-08-01T10:10:00")
-                .buildCheck()
+                .build()
             return VehicleAggregateBuilder()
                 .withPlate("LKJ456")
                 .withTypeId(2)
@@ -156,7 +156,7 @@ class EntityObjectMother {
                 .withPlate("LKJ456")
                 .withDateInput("2021-08-01T09:30:00")
                 .withDateExit("2021-08-01T10:10:00")
-                .buildCheck()
+                .build()
             return VehicleAggregateBuilder()
                 .withPlate("LKJ456")
                 .withTypeId(2)
@@ -169,7 +169,7 @@ class EntityObjectMother {
                 .withPlate("LKJ456")
                 .withDateInput("2021-08-01T09:30:00")
                 .withDateExit("2021-08-01T10:10:00")
-                .buildCheck()
+                .build()
             return VehicleAggregateBuilder()
                 .withPlate("LKJ456")
                 .withTypeId(2)
@@ -182,7 +182,7 @@ class EntityObjectMother {
                 .withPlate("LKJ456")
                 .withDateInput("2021-08-01T09:10:00")
                 .withDateExit("2021-08-02T20:10:00")
-                .buildCheck()
+                .build()
             return VehicleAggregateBuilder()
                 .withPlate("LKJ456")
                 .withTypeId(2)

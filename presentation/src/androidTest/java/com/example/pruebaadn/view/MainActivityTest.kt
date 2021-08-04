@@ -54,9 +54,9 @@ class MainActivityTest {
         addVehicleValidateCost()
         Thread.sleep(1500)
         //Act
-        writeTo(R.id.editTextSearch, "MGT")
+        writeTo(R.id.editTextSearch, "LGT")
         clickOn(R.id.btn_view_cost)
-        Thread.sleep(1000)
+        Thread.sleep(2000)
         //Assert
         assertContains(R.id.details_mess_cost, "1000")
     }
@@ -71,7 +71,7 @@ class MainActivityTest {
         clickOn(R.id.btn_add_vehicle)
         //Act
         clickOn(R.id.radio_button_car)
-        writeTo(R.id.editTextDialoguePlate, "MGT568")
+        writeTo(R.id.editTextDialoguePlate, "LGT568")
         clickOn(R.id.btn_dialogue_accept)
     }
 }
