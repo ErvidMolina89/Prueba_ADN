@@ -1,9 +1,9 @@
 package com.example.domain.service
 
 import com.example.domain.R
+import com.example.domain.exception.InvalidDataException
 import com.example.domain.model.DisponibilityEntity
 import com.example.domain.model.VehicleEntity
-import com.example.domain.exception.InvalidDataException
 import com.example.domain.repository.CheckRepository
 import com.example.domain.repository.DisponibilityRepository
 import com.example.domain.repository.VehicleRepository

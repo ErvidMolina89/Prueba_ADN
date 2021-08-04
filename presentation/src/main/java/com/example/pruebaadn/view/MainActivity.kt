@@ -4,15 +4,14 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.WindowManager
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.domain.aggregate.VehicleAggregate
+import com.example.domain.exception.InvalidDataException
 import com.example.domain.model.CheckEntity
 import com.example.domain.model.VehicleEntity
-import com.example.domain.exception.InvalidDataException
 import com.example.pruebaadn.R
 import com.example.pruebaadn.base.App
 import com.example.pruebaadn.databinding.ActivityMainBinding

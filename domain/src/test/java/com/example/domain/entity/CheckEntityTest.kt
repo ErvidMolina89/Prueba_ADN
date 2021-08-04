@@ -1,6 +1,7 @@
 package com.example.domain.entity
 
 import com.example.domain.R
+import com.example.domain.builder.EntityObjectMother
 import com.example.domain.exception.InvalidDataException
 import com.example.domain.model.CheckEntity
 import org.junit.Assert.assertEquals
@@ -12,11 +13,11 @@ class CheckEntityTest{
     @Test
     fun checkEntity_CreateCheckWithCorrect_Success(){
         // Arrange
-        val expected = CheckEntity()
+        val expected = EntityObjectMother
 
         try {
             //Act
-            expected.CheckEntity("AFG456", "2021-08-01T20:00:00", null, null)
+            expected.createCheckWithCorrectData()
             //Assert
             assertNotNull(expected)
         }catch (e: InvalidDataException){
@@ -26,11 +27,11 @@ class CheckEntityTest{
     @Test
     fun checkEntity_CreateCheckWithNullPlate_Failure(){
         // Arrange
-        val expected = CheckEntity()
+        val expected = EntityObjectMother
 
         try {
             //Act
-            expected.CheckEntity(null, "2021-08-01T20:00:00", null, null)
+            expected.createCheckkWithNullPlateFailure()
         }catch (e: InvalidDataException){
             //Assert
             assertEquals(R.string.not_minimun_data_create_object.toString(), e.message)
@@ -40,11 +41,11 @@ class CheckEntityTest{
     @Test
     fun checkEntity_CreateCheckWithNullDateinput_Failure(){
         // Arrange
-        val expected = CheckEntity()
+        val expected = EntityObjectMother
 
         try {
             //Act
-            expected.CheckEntity("GHT456", null, null, null)
+            expected.createCheckkWithNullDateInputFailure()
         }catch (e: InvalidDataException){
             //Assert
             assertEquals(R.string.not_minimun_data_create_object.toString(), e.message)

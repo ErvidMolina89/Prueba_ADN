@@ -11,11 +11,8 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.StringRes
-import androidx.constraintlayout.widget.Guideline
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.example.domain.model.VehicleEntity
 import com.example.pruebaadn.R
 
 class DialogCostVehicle : DialogFragment() {

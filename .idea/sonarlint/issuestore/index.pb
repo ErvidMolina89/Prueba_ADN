@@ -33,10 +33,6 @@ J
 infraestructure/.gitignore,0/0/00c5f0ac5f7652ecb0e0f458b63c6c955b0a59e2
 G
 presentation/.gitignore,f/b/fbca453880d1e4bf85dee45541fc678b5da70bdf
-X
-(application/src/main/AndroidManifest.xml,c/5/c51da6957ba080f9babe1a3e60654982dfef6853
-\
-,infraestructure/src/main/AndroidManifest.xml,2/c/2ce36aa806262abeb076f30892307dd422a17bf0
 N
 application/consumer-rules.pro,4/5/459fd22e435da3d582b4e5203e2c7ff2a06c408c
 I
@@ -47,12 +43,6 @@ R
 Zinfraestructure/src/main/java/com/example/infraestructure/data_access/DbEstacionamiento.kt,6/d/6dc2198ac37365a42edf486877a2068eb04966f2
 Ž
 ^infraestructure/src/main/java/com/example/infraestructure/data_access/daos/DisponibilityDao.kt,b/5/b5aeffb0391bae912fa6067cc8c4b5121cf10e97
-t
-Dapplication/src/test/java/com/example/application/ExampleUnitTest.kt,9/6/9667cc59b4296276f604dbe7b77f061c0dc29e20
-|
-Linfraestructure/src/test/java/com/example/infraestructure/ExampleUnitTest.kt,d/3/d3c2ed3263b51b8e61f2567fbae897e7bcf76edc
-s
-Cpresentation/src/test/java/com/example/pruebaadn/ExampleUnitTest.kt,a/e/ae655c2b194a6590f361ec9ec7e0497ae735ffbb
 N
 application/proguard-rules.pro,8/e/8e80d4dfde3c01aa28a0f43c69388b3789fed9bd
 I
@@ -81,26 +71,14 @@ Uinfraestructure/src/main/java/com/example/infraestructure/data_access/daos/Base
 pinfraestructure/src/main/java/com/example/infraestructure/data_access/models/variant_init/DisponibilityModels.kt,f/5/f537e104a8259a196d173cc9ea441a8b8400aaec
 u
 Epresentation/src/main/java/com/example/pruebaadn/utils/DateFormats.kt,7/6/7631c737f6baa4b95343304cb0df2dc89a96f558
-x
-Hpresentation/src/main/java/com/example/pruebaadn/utils/ExtensionsView.kt,4/a/4addbaaaa3edd873a4b5793a8f5590ab8ffe3862
-‹
-[infraestructure/src/main/java/com/example/infraestructure/data_access/models/CheckModels.kt,f/f/ffda462c4097c5f40bf11006e4a345883cd7eedd
 –
 finfraestructure/src/main/java/com/example/infraestructure/data_access/models/ConsultCheckAndVehicle.kt,d/5/d52154d3bd5d15c346c3859a32c10462bcac364e
-x
-Hpresentation/src/main/java/com/example/pruebaadn/utils/ExtensionsDate.kt,0/7/07a35008c575ce14f62745487477e8306dc3567f
 ‡
 Winfraestructure/src/main/java/com/example/infraestructure/data_access/daos/PricesDao.kt,8/5/8585f3744d4688b60596ccf6f87c01939012d266
-
-]infraestructure/src/main/java/com/example/infraestructure/data_access/models/VehicleModels.kt,4/1/41f6c692ef333e8a79d89b24991a3d47a9ffb9c0
 Œ
 \presentation/src/main/java/com/example/pruebaadn/view/interfaces/VehicleViewModelDelegate.kt,7/c/7cf1a6618b93e1fe940ccfb3ae1d4966f0e8c396
 p
 @domain/src/main/java/com/example/domain/util/StringExtensions.kt,1/2/1271720bb6e55fe3fd242f632706518515cbc077
-n
->domain/src/main/java/com/example/domain/util/DateExtensions.kt,d/8/d8988b632c5f4098228463ff10500ff2f86e3381
-‚
-Rpresentation/src/androidTest/java/com/example/pruebaadn/ExampleInstrumentedTest.kt,a/9/a953f2ed70f2c17806ec932e08582223b4ab2220
 ˆ
 Xinfraestructure/src/main/java/com/example/infraestructure/data_access/daos/VehicleDao.kt,5/b/5bf11fdae44ace4e83d93a7eeb4256db3eb4b820
 L
@@ -111,8 +89,6 @@ H
 application/build.gradle,a/a/aa9cf0dce48be9892530b6983bf9282cc49f2a75
 v
 Fpresentation/src/main/java/com/example/pruebaadn/utils/TagsDialogue.kt,c/4/c488909089e467fb6ef7dc01212590f56053b1eb
-{
-Kpresentation/src/main/java/com/example/pruebaadn/utils/ExtensionsContext.kt,6/c/6c18681f902456d4904069499c145f8890ecec02
 u
 Edomain/src/main/java/com/example/domain/service/VariantInitService.kt,5/2/52fad7d8a20d216081bb6d0e8cfb933459eabd5a
 v

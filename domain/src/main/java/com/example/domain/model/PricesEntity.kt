@@ -6,7 +6,7 @@ class PricesEntity {
     var value: Double? = null
     var extra: Double? = null
 
-    fun PricesValueObj(typeId: Int?, typePrice: Int?, value: Double?, extra: Double?){
+    fun PricesEntity(typeId: Int?, typePrice: Int?, value: Double?, extra: Double?){
         this.typeId = typeId
         this.typePrice = typePrice
         this.value = value

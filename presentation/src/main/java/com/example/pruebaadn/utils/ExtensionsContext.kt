@@ -8,9 +8,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.pruebaadn.base.App
-import java.text.SimpleDateFormat
-import java.util.*
 
 @SuppressLint("SimpleDateFormat")
 fun Context.hideKeyboard(editText: EditText) {

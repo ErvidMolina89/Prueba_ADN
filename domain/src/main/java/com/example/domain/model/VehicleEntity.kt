@@ -1,6 +1,5 @@
 package com.example.domain.model
 
-import android.content.Context
 import com.example.domain.R
 import com.example.domain.exception.InvalidDataException
 import java.util.regex.Matcher
@@ -8,7 +7,7 @@ import java.util.regex.Pattern
 
 class VehicleEntity {
 
-    private val format = "^[A-Z]{3}[0-9]{3}\$"
+    private val format = "^[A-Z]{3}[A-Z 0-9]{3}\$"
 
     var plate : String? = null
     var typeId : Int? = null

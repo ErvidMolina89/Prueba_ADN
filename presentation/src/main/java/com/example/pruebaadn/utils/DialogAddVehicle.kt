@@ -12,8 +12,6 @@ import android.widget.*
 import androidx.constraintlayout.widget.Guideline
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
-import com.example.domain.aggregate.VehicleAggregate
-import com.example.domain.model.CheckEntity
 import com.example.domain.model.VehicleEntity
 import com.example.pruebaadn.R
 import com.example.pruebaadn.base.App

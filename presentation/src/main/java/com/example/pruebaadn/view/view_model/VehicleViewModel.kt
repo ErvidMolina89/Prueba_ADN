@@ -3,8 +3,8 @@ package com.example.pruebaadn.view.view_model
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import com.example.application.service.VehicleApplicationService
-import com.example.domain.model.VehicleEntity
 import com.example.domain.exception.InvalidDataException
+import com.example.domain.model.VehicleEntity
 import com.example.domain.service.VehicleService
 import com.example.infrastructure.data_access.repository.CheckRepoRoom
 import com.example.infrastructure.data_access.repository.DisponibilityRepoRoom

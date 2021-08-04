@@ -1,6 +1,7 @@
 package com.example.domain.entity
 
 import com.example.domain.R
+import com.example.domain.builder.EntityObjectMother
 import com.example.domain.exception.InvalidDataException
 import com.example.domain.model.VehicleEntity
 import org.junit.Assert.assertEquals
@@ -11,30 +12,20 @@ class VehicleEntityTest{
 
     @Test
     fun validatePlateFormat_CreateVehcicleWithCorrectPlate_Success(){
-        // Arrange
-        val plate = "ABD456"
-        val type  = 1
-        val expected = VehicleEntity()
-
         try {
-            //Act
-            expected.VehicleEntity(plate, type, null)
+            // Arrange And Act
+            val expected = EntityObjectMother.vehiclePlateCarSucces()
             //Assert
             assertNotNull(expected)
-        }catch (e: InvalidDataException){
-        }
+        }catch (e: InvalidDataException){ }
     }
 
     @Test
     fun validatePlateFormat_CreateVehcicleWithPlateLowercase_Failure(){
-        // Arrange
-        val plate = "adh456"
-        val type  = 1
-        val expected = VehicleEntity()
 
         try {
-            //Act
-            expected.VehicleEntity(plate, type, null)
+            // Arrange And Act
+            val expected = EntityObjectMother.vehiclePlateLowerCaseFailure()
         }catch (e: InvalidDataException){
             //Assert
             assertEquals(R.string.format_incorrect_plate.toString(), e.message)
@@ -43,14 +34,10 @@ class VehicleEntityTest{
 
     @Test
     fun validatePlateFormat_CreateVehcicleWithPlateLowercaseAndUppercase_Failure(){
-        // Arrange
-        val plate = "Fdh456"
-        val type  = 1
-        val expected = VehicleEntity()
 
         try {
-            //Act
-            expected.VehicleEntity(plate, type, null)
+            // Arrange And Act
+            val expected = EntityObjectMother.vehiclePlateLowerCaseAndUpperCaseFailure()
         }catch (e: InvalidDataException){
             //Assert
             assertEquals(R.string.format_incorrect_plate.toString(), e.message)
@@ -59,14 +46,10 @@ class VehicleEntityTest{
 
     @Test
     fun validatePlateFormat_CreateVehcicleWithPlateIncomplete_Failure(){
-        // Arrange
-        val plate = "ABD"
-        val type  = 1
-        val expected = VehicleEntity()
 
         try {
-            //Act
-            expected.VehicleEntity(plate, type, null)
+            // Arrange And Act
+            val expected = EntityObjectMother.vehiclePlateCarIncomplete()
         }catch (e: InvalidDataException){
             //Assert
             assertEquals(R.string.format_incorrect_plate.toString(), e.message)
@@ -74,31 +57,21 @@ class VehicleEntityTest{
     }
 
     @Test
-    fun validatePlateFormat_CreateVehcicleWithPlateMoreLetters_Failure(){
-        // Arrange
-        val plate = "ABDG45"
-        val type  = 1
-        val expected = VehicleEntity()
+    fun validatePlateFormat_CreateVehcicleWithPlateMoreLetters_Success(){
 
         try {
-            //Act
-            expected.VehicleEntity(plate, type, null)
-        }catch (e: InvalidDataException){
+            // Arrange And Act
+            val expected = EntityObjectMother.vehiclePlateCarWithPlateMoreLettersSuccess()
             //Assert
-            assertEquals(R.string.format_incorrect_plate.toString(), e.message)
-        }
+            assertNotNull(expected)
+        }catch (e: InvalidDataException){ }
     }
 
     @Test
     fun validatePlateFormat_CreateVehcicleWithPlateMoreNumbers_Failure(){
-        // Arrange
-        val plate = "AB4545"
-        val type  = 1
-        val expected = VehicleEntity()
-
         try {
-            //Act
-            expected.VehicleEntity(plate, type, null)
+            // Arrange And Act
+            val expected = EntityObjectMother.vehiclePlateCarWithPlateMoreNumbersFailure()
         }catch (e: InvalidDataException){
             //Assert
             assertEquals(R.string.format_incorrect_plate.toString(), e.message)
@@ -107,14 +80,9 @@ class VehicleEntityTest{
 
     @Test
     fun validatePlateFormat_CreateVehcicleWithLongestPlate_Failure(){
-        // Arrange
-        val plate = "ABDG456"
-        val type  = 1
-        val expected = VehicleEntity()
-
         try {
-            //Act
-            expected.VehicleEntity(plate, type, null)
+            // Arrange And Act
+            val expected = EntityObjectMother.vehiclePlateCarWithLongestPlate()
         }catch (e: InvalidDataException){
             //Assert
             assertEquals(R.string.format_incorrect_plate.toString(), e.message)
@@ -123,14 +91,9 @@ class VehicleEntityTest{
 
     @Test
     fun validatePlateFormat_CreateVehcicleWithPlateEmpty_Failure(){
-        // Arrange
-        val plate = ""
-        val type  = 1
-        val expected = VehicleEntity()
-
         try {
-            //Act
-            expected.VehicleEntity(plate, type, null)
+            // Arrange And Act
+            val expected = EntityObjectMother.vehiclePlateCarWithPlateEmpty()
         }catch (e: InvalidDataException){
             //Assert
             assertEquals(R.string.format_incorrect_plate.toString(), e.message)
