@@ -84,13 +84,6 @@ class EntityObjectMother {
                 .withCount(20)
                 .buildDisponibility()
         }
-        fun disponibilityMotocycle(): DisponibilityEntity {
-            return DispomibilityEntityBuilder()
-                .withId(2)
-                .withTypeId(2)
-                .withCount(10)
-                .buildDisponibility()
-        }
         //PriceEntity
         fun priceDaysCar(): PricesEntity {
             return PriceEntityBuilder()
