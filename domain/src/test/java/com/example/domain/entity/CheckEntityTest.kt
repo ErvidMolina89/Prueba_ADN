@@ -3,7 +3,6 @@ package com.example.domain.entity
 import com.example.domain.R
 import com.example.domain.builder.EntityObjectMother
 import com.example.domain.exception.InvalidDataException
-import com.example.domain.model.CheckEntity
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test

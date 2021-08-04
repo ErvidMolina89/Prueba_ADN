@@ -2,6 +2,7 @@ package com.example.domain.builder
 
 import com.example.domain.aggregate.VehicleAggregate
 import com.example.domain.model.CheckEntity
+import com.example.domain.model.DisponibilityEntity
 import com.example.domain.model.PricesEntity
 import com.example.domain.model.VehicleEntity
 
@@ -74,6 +75,21 @@ class EntityObjectMother {
                 .withPlate("THF456")
                 .withDateInput("2021-07-30T20:00:00")
                 .buildCheck()
+        }
+        //DisponibilityEntity
+        fun disponibilityCar(): DisponibilityEntity {
+            return DispomibilityEntityBuilder()
+                .withId(1)
+                .withTypeId(1)
+                .withCount(20)
+                .buildDisponibility()
+        }
+        fun disponibilityMotocycle(): DisponibilityEntity {
+            return DispomibilityEntityBuilder()
+                .withId(2)
+                .withTypeId(2)
+                .withCount(10)
+                .buildDisponibility()
         }
         //PriceEntity
         fun priceDaysCar(): PricesEntity {
@@ -181,6 +197,11 @@ class EntityObjectMother {
                 .withCheckEntity(check)
                 .buildAggregate()
         }
-
+        //VehicleService
+        fun insertVehicleCorrect(): VehicleEntity{
+            return VehicleEntityBuilder()
+                .withPlate("RFR456")
+                .buildVehicle()
+        }
     }
 }

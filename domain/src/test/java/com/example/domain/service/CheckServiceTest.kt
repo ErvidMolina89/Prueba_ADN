@@ -3,8 +3,6 @@ package com.example.domain.service
 import com.example.domain.aggregate.VehicleAggregate
 import com.example.domain.builder.EntityObjectMother
 import com.example.domain.exception.InvalidDataException
-import com.example.domain.model.CheckEntity
-import com.example.domain.model.PricesEntity
 import com.example.domain.repository.CheckRepository
 import com.example.domain.repository.PriceRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
