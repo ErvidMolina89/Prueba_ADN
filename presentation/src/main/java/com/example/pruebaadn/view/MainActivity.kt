@@ -45,19 +45,15 @@ class MainActivity : AppCompatActivity(),
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         App.setContext(this)
-
-    }
-
-    override fun onResume() {
-        super.onResume()
+        onStyleRecycler()
         listenerRecycler()
         listenerEditTextSearch()
-        onStyleRecycler()
         eventAddVehicle()
         if(listVehicleAggregation.size == 0){
             checkViewModel.getAllCheck()
             variantInitViewModel.validateDbAndInsertVariablesInit()
         } else adapter.setData(listVehicleAggregation)
+
     }
 
     private fun onStyleRecycler() {
@@ -72,10 +68,12 @@ class MainActivity : AppCompatActivity(),
     }
 
     private fun listenerRecycler(){
-        adapter.onClickListener {
-            val dateExit = Date()
-            it.checkEntity?.dateExit = dateExit.convertToFormatString(DateFormats.ISO_8601)
-            checkViewModel.validateCosteVehicle(it)
+        adapter.let {
+            adapter.onClickListener {
+                val dateExit = Date()
+                it.checkEntity?.dateExit = dateExit.convertToFormatString(DateFormats.ISO_8601)
+                checkViewModel.validateCosteVehicle(it)
+            }
         }
     }
 

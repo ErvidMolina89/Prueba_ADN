@@ -35,43 +35,37 @@ class MainActivityTest {
     @Test
     fun addVehicletoCarListRecycler(){
         //Arrange
-        clickOn(R.id.btn_add_vehicle)
+        addVehicle()
         //Act
-        clickOn(R.id.radio_button_car)
-        writeTo(R.id.editTextDialoguePlate, "MGT568")
-        clickOn(R.id.btn_dialogue_accept)
-        Thread.sleep(2000)
+        Thread.sleep(1000)
         writeTo(R.id.editTextSearch, "MGT")
         //Asssert
         assertContains(R.id.TextViewPlateCard, "MGT568")
-        Thread.sleep(2000)
-        deleteVeehicleInsert()
+        Thread.sleep(1000)
+        costVehicle()
     }
 
     @Test
     fun validateCostCarEnter(){
         //Arrange
-        addVehicleValidateCost()
-        Thread.sleep(1500)
+        addVehicle()
         //Act
-        writeTo(R.id.editTextSearch, "LGT")
-        clickOn(R.id.btn_view_cost)
-        Thread.sleep(2000)
+        costVehicle()
+        Thread.sleep(1000)
         //Assert
         assertContains(R.id.details_mess_cost, "1000")
     }
 
-    private fun deleteVeehicleInsert(){
-        writeTo(R.id.editTextSearch, "MGT")
-        clickOn(R.id.btn_view_cost)
+    private fun addVehicle(){
+        clickOn(R.id.btn_add_vehicle)
+        clickOn(R.id.radio_button_car)
+        writeTo(R.id.editTextDialoguePlate, "MGT568")
+        clickOn(R.id.btn_dialogue_accept)
     }
 
-    private fun addVehicleValidateCost(){
-        //Arrange
-        clickOn(R.id.btn_add_vehicle)
-        //Act
-        clickOn(R.id.radio_button_car)
-        writeTo(R.id.editTextDialoguePlate, "LGT568")
-        clickOn(R.id.btn_dialogue_accept)
+    private fun costVehicle(){
+        writeTo(R.id.editTextSearch, "MGT")
+        Thread.sleep(1000)
+        clickOn(R.id.btn_view_cost)
     }
 }

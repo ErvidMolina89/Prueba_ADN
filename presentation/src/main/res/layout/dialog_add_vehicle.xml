@@ -167,6 +167,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/edit_text_insert"
+                        android:digits="qwertyuiopasdfghjklzxcvbnm 1234567890 QWERTYUIOPASDFGHJKLZXCVBNM"
+                        android:maxLength="6"
                         android:inputType="textCapCharacters"
                         android:textColor="@color/design_default_color_primary"
                         android:textColorHint="@color/design_default_color_primary" />
@@ -191,6 +193,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/edit_text_cylinder"
+                        android:digits="1234567890 "
                         android:inputType="number"
                         android:textColor="@color/design_default_color_primary"
                         android:textColorHint="@color/design_default_color_primary" />

@@ -47,8 +47,7 @@ class MainRecyclerViewAdapter  (
 
     private fun setListeners(holder : ViewHolder, item : VehicleAggregate){
 
-        holder.btn_view_cost
-            .setOnClickListener {
+        holder.btn_view_cost.setOnClickListener {
                 listener?.invoke(item)
             }
     }
