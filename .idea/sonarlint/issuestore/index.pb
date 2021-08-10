@@ -81,12 +81,8 @@ p
 @domain/src/main/java/com/example/domain/util/StringExtensions.kt,1/2/1271720bb6e55fe3fd242f632706518515cbc077
 ˆ
 Xinfraestructure/src/main/java/com/example/infraestructure/data_access/daos/VehicleDao.kt,5/b/5bf11fdae44ace4e83d93a7eeb4256db3eb4b820
-L
-infraestructure/build.gradle,3/1/31728d1a9eed9110efbd152db8af67b28a98b0e5
 †
 Vinfraestructure/src/main/java/com/example/infraestructure/data_access/daos/CheckDao.kt,d/5/d5554ddc8310acd2914b0dabdd84c5e7769e10d2
-H
-application/build.gradle,a/a/aa9cf0dce48be9892530b6983bf9282cc49f2a75
 v
 Fpresentation/src/main/java/com/example/pruebaadn/utils/TagsDialogue.kt,c/4/c488909089e467fb6ef7dc01212590f56053b1eb
 ˆ
@@ -135,16 +131,12 @@ Vapplication/src/main/java/com/example/application/service/VehicleApplicationSer
 cinfraestructure/src/main/java/com/example/infraestructure/data_access/repository/VehicleRepoRoom.kt,8/a/8a15c3f32a50b382fbfe9607e5c45d3cd6b06bbc
 w
 Gdomain/src/main/java/com/example/domain/repository/VehicleRepository.kt,0/3/03f54fe142d813b8c8f10a8d5f247c5eba7959d1
-<
-build.gradle,f/0/f07866736216be0ee2aba49e392191aeae700a35
 ;
 gradlew.bat,2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3
 7
 gradlew,5/b/5bbfa66edb4db3c7c33c5181f43510990d3307f9
 H
 sonar-project.properties,2/5/2538046035efb77ecc44e1fd2eec1e2641594d4c
-I
-presentation/build.gradle,2/9/29ca4091f3fd866a7d8488b04776c5994c7983b9
 n
 >domain/src/main/java/com/example/domain/util/DateExtensions.kt,d/8/d8988b632c5f4098228463ff10500ff2f86e3381
 ‹
@@ -197,8 +189,6 @@ o
 ?domain/src/main/java/com/example/domain/service/CheckService.kt,4/1/4170924937408b799ab569d87baf1746ddb59972
 y
 Idomain/src/main/java/com/example/domain/cost_type_vehicle/ICostVehicle.kt,a/6/a6dee29512cb49475d6da3bf8bd61922b8bc5d85
-C
-domain/build.gradle,a/3/a3021bb5ba623a461b5fdb89ae51923a4945c354
 ;
 Jenkinsfile,0/c/0c2c5c506cef0ed2d3ad2b7e45e97980b66f5520
 s

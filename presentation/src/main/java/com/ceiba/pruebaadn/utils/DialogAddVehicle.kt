@@ -102,12 +102,12 @@ class DialogAddVehicle: DialogFragment() {
         btn_ok?.setOnClickListener {
             enterDateToday()
             if (edit_plate?.text?.toString()?.isEmpty()!!)
-                return@setOnClickListener App.getContext()!!.createToast(getString(R.string.not_placa))
+                return@setOnClickListener invokesDelegateError?.invoke(getString(R.string.not_placa))!!
             when(vehicleEntity?.typeId){
                 1->{ getVehicleCar() }
                 2 -> {
                     if (edit_cylinder?.text?.toString()?.isEmpty()!!) {
-                        App.getContext()!!.createToast(getString(R.string.not_placa))
+                        invokesDelegateError?.invoke(getString(R.string.not_placa))
                         return@setOnClickListener
                     }
                     getVehicleMotocycle()
@@ -186,6 +186,12 @@ class DialogAddVehicle: DialogFragment() {
     private var invokesActionOk:((VehicleEntity, String)->Unit)?= null
     fun withActionBtnOk(actionOk : (VehicleEntity, String)->Unit) : DialogAddVehicle {
         this.invokesActionOk = actionOk
+        return this
+    }
+
+    private var invokesDelegateError:((String)->Unit)?= null
+    fun withDelegateError(invokesDelegateError : (String)->Unit) : DialogAddVehicle {
+        this.invokesDelegateError = invokesDelegateError
         return this
     }
 

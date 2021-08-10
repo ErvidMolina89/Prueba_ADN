@@ -3,8 +3,9 @@ package com.ceiba.application.service
 import com.ceiba.domain.aggregate.VehicleAggregate
 import com.ceiba.domain.model.CheckEntity
 import com.ceiba.domain.service.CheckService
+import javax.inject.Inject
 
-class CheckApplicationService (private val service: CheckService) {
+class CheckApplicationService @Inject constructor(private val service: CheckService) {
 
     fun getAllC(): MutableList<VehicleAggregate>{
         return service.getAllCheck()

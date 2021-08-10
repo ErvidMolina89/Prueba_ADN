@@ -3,21 +3,31 @@ package com.ceiba.infrastructure.data_access.repository
 import android.content.Context
 import com.ceiba.domain.repository.InitializationOfTheDefaultVariablesRepository
 import com.ceiba.infraestructure.data_access.DbEstacionamiento
+import com.ceiba.infraestructure.data_access.daos.DisponibilityDao
+import com.ceiba.infraestructure.data_access.daos.PricesDao
+import com.ceiba.infraestructure.data_access.daos.TypePriceDao
+import com.ceiba.infraestructure.data_access.daos.TypeVehicleDao
 import com.ceiba.infraestructure.data_access.data.DataConfig
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class InitializationOfTheDefaultVariablesRoom  (private val context: Context) : InitializationOfTheDefaultVariablesRepository{
+class InitializationOfTheDefaultVariablesRoom @Inject constructor(
+    private val typeVehicleDao: TypeVehicleDao,
+    private val typePriceDao: TypePriceDao,
+    private val priceDao: PricesDao,
+    private val disponibilityDao: DisponibilityDao
+) : InitializationOfTheDefaultVariablesRepository{
 
     override fun InitializationOfTheDefaultVariables() {
-        val list = DbEstacionamiento.getInstance(context).typeVehicleDao().getAllTypeVehicleModels()
+        val list = typeVehicleDao.getAllTypeVehicleModels()
         if (list.size == 0){
             GlobalScope.launch {
-                DbEstacionamiento.getInstance(context).typePriceDao()
+                typePriceDao
                     .insertList(DataConfig().inserTypePrice())
             }
             GlobalScope.launch {
-                onSuccessInsert(DbEstacionamiento.getInstance(context).typeVehicleDao()
+                onSuccessInsert(typeVehicleDao
                     .insertList(DataConfig().inserTypeVehicle()))
             }
 
@@ -28,11 +38,11 @@ class InitializationOfTheDefaultVariablesRoom  (private val context: Context) : 
     private fun onSuccessInsert(list: List<Long>){
         list.forEach {  }
         GlobalScope.launch {
-            DbEstacionamiento.getInstance(context).pricesDao()
+            priceDao
                 .insertList(DataConfig().inserPrice())
         }
         GlobalScope.launch {
-            DbEstacionamiento.getInstance(context).disponibilityDao()
+            disponibilityDao
                 .insertList(DataConfig().inserDisponibility())
         }
     }

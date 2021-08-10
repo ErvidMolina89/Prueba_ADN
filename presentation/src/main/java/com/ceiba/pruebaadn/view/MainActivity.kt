@@ -4,6 +4,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -19,32 +20,30 @@ import com.ceiba.pruebaadn.utils.*
 import com.ceiba.pruebaadn.view.interfaces.CheckViewModelDelegate
 import com.ceiba.pruebaadn.view.interfaces.VehicleViewModelDelegate
 import com.ceiba.pruebaadn.view.view_model.*
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(),
             CheckViewModelDelegate, VehicleViewModelDelegate {
 
-    private lateinit var variantInitViewModel: VariantInitViewModel
-    private lateinit var vehicleViewModel: VehicleViewModel
-    private lateinit var checkViewModel: CheckViewModel
+    private val variantInitViewModel: VariantInitViewModel by viewModels()
+    private val vehicleViewModel: VehicleViewModel by viewModels()
+    private val checkViewModel: CheckViewModel by viewModels()
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var checkEntity: CheckEntity
     private var adapter: MainRecyclerViewAdapter = MainRecyclerViewAdapter(this, emptyList<VehicleAggregate>().toMutableList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        variantInitViewModel = ViewModelProvider(this).get(VariantInitViewModel::class.java)
-        vehicleViewModel = ViewModelProvider(this).get(VehicleViewModel::class.java)
-        checkViewModel = ViewModelProvider(this).get(CheckViewModel::class.java)
-
-        vehicleViewModel.setDelegate(this)
-        checkViewModel.setDelegate(this)
 
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        App.setContext(this)
+
+        vehicleViewModel.setDelegate(this)
+        checkViewModel.setDelegate(this)
+
         onStyleRecycler()
         listenerRecycler()
         listenerEditTextSearch()
@@ -97,6 +96,9 @@ class MainActivity : AppCompatActivity(),
                     this.createToast(this.getString(e.message!!.toInt()))
                 }
             }
+            .withDelegateError {
+                this.createToast(it)
+            }
         this.showDialoAddVehicle()
     }
 
@@ -146,7 +148,7 @@ class MainActivity : AppCompatActivity(),
 
     override fun responseException(message: String?) {
         binding.recyclerViewSearchResults.post {
-            App.getContext()?.createToast(message!!)
+            this.createToast(message!!)
         }
     }
 

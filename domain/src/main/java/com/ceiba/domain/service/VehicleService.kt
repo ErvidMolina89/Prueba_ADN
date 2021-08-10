@@ -9,8 +9,9 @@ import com.ceiba.domain.repository.DisponibilityRepository
 import com.ceiba.domain.repository.VehicleRepository
 import com.ceiba.domain.util.convertToFormatDate
 import java.util.*
+import javax.inject.Inject
 
-class VehicleService (
+class VehicleService @Inject constructor(
     private val vehicleRepository: VehicleRepository,
     private val checkRepository: CheckRepository,
     private val disponibilityRepository: DisponibilityRepository

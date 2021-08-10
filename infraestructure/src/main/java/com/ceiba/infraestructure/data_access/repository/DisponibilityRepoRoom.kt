@@ -4,22 +4,24 @@ import android.content.Context
 import com.ceiba.domain.model.DisponibilityEntity
 import com.ceiba.domain.repository.DisponibilityRepository
 import com.ceiba.infraestructure.data_access.DbEstacionamiento
+import com.ceiba.infraestructure.data_access.daos.DisponibilityDao
 import com.ceiba.infrastructure.data_access.mapper.fromEntity
 import com.ceiba.infrastructure.data_access.mapper.fromListEntity
 import com.ceiba.infrastructure.data_access.mapper.fromModels
+import javax.inject.Inject
 
-class DisponibilityRepoRoom (private val context: Context) : DisponibilityRepository {
+class DisponibilityRepoRoom @Inject constructor (private val disponibilityDao: DisponibilityDao) : DisponibilityRepository {
 
     override fun getAll(): MutableList<DisponibilityEntity>{
-        return DbEstacionamiento.getInstance(context).disponibilityDao().getAllDisponibilityModels().fromListEntity()
+        return disponibilityDao.getAllDisponibilityModels().fromListEntity()
     }
 
     override fun update(disponibilityEntity: DisponibilityEntity) {
-        DbEstacionamiento.getInstance(context).disponibilityDao().update(disponibilityEntity.fromModels())
+        disponibilityDao.update(disponibilityEntity.fromModels())
     }
 
     override fun getDisponibilityForTypeId(typeId: Int?): DisponibilityEntity {
-        return DbEstacionamiento.getInstance(context).disponibilityDao().getDisponibilityModelsTypeId(typeId!!).fromEntity()
+        return disponibilityDao.getDisponibilityModelsTypeId(typeId!!).fromEntity()
     }
 
 }

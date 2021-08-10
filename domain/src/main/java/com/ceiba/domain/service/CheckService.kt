@@ -8,8 +8,9 @@ import com.ceiba.domain.repository.PriceRepository
 import com.ceiba.domain.util.TypePriceEnum
 import com.ceiba.domain.util.convertToFormatDate
 import com.ceiba.domain.util.dateDifference
+import javax.inject.Inject
 
-class CheckService (
+class CheckService @Inject constructor(
     private val repositoryCheck: CheckRepository,
     private val repositoryPrice: PriceRepository
     ) {

@@ -1,7 +1,11 @@
 package com.ceiba.pruebaadn.view.view_model
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.ceiba.application.service.CheckApplicationService
 import com.ceiba.domain.aggregate.VehicleAggregate
 import com.ceiba.domain.model.CheckEntity
@@ -11,38 +15,41 @@ import com.ceiba.infrastructure.data_access.repository.PriceRepoRoom
 import com.ceiba.pruebaadn.R
 import com.ceiba.pruebaadn.base.App
 import com.ceiba.pruebaadn.view.interfaces.CheckViewModelDelegate
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class CheckViewModel (app: Application): AndroidViewModel(app) {
+@SuppressLint("StaticFieldLeak")
+@HiltViewModel
+class CheckViewModel @Inject constructor(
+   @ApplicationContext private val context: Context,
+    private val application : CheckApplicationService
+): ViewModel() {
 
     private lateinit var delegate: CheckViewModelDelegate
-    private lateinit var roomCheck : CheckRepoRoom
-    private lateinit var roomPrice : PriceRepoRoom
-    private lateinit var service : CheckService
-    private lateinit var application : CheckApplicationService
-
-    init {
-        roomCheck = CheckRepoRoom(app.applicationContext)
-        roomPrice = PriceRepoRoom(app.applicationContext)
-        service = CheckService(roomCheck, roomPrice)
-        application  = CheckApplicationService(service)
-    }
 
     fun getAllCheck(){
-        GlobalScope.launch {
-            val list = application.getAllC()
-            if (list.size == 0){
-                delegate.responseEmptyAllCheck()
-            } else delegate.responseGetAllCheck(list)
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val list = application.getAllC()
+                if (list.size == 0) {
+                    delegate.responseEmptyAllCheck()
+                } else delegate.responseGetAllCheck(list)
+            }
         }
     }
 
     fun insertCheckVehicle(checkEntity: CheckEntity) {
-        GlobalScope.launch {
-            if (application.insertInvoice(checkEntity) != null) {
-                delegate.responseInsertCheckVehicle()
-            }else delegate.responseException(App.getContext()?.getString(R.string.not_insert_vehicle))
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                if (application.insertInvoice(checkEntity) != null) {
+                    delegate.responseInsertCheckVehicle()
+                } else delegate.responseException(context.getString(R.string.not_insert_vehicle))
+            }
         }
     }
 
@@ -51,11 +58,13 @@ class CheckViewModel (app: Application): AndroidViewModel(app) {
     }
 
     fun validateCosteVehicle(checkAggregate: VehicleAggregate) {
-        GlobalScope.launch {
-            val response = application.validateCosteInvoiceVehicle(checkAggregate)
-            if (response.totalCost != null) {
-                delegate.responseValidateCosteVehicle(response)
-            }else delegate.responseException(App.getContext()?.getString(R.string.invoice_not_calculated))
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val response = application.validateCosteInvoiceVehicle(checkAggregate)
+                if (response.totalCost != null) {
+                    delegate.responseValidateCosteVehicle(response)
+                } else delegate.responseException(context.getString(R.string.invoice_not_calculated))
+            }
         }
     }
 }

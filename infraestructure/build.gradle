@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
     id 'jacoco'
 }
 
@@ -43,6 +44,10 @@ dependencies {
 
     //live Data
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$viewmodel_version"
+
+    //hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
