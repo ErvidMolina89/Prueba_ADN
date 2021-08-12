@@ -14,7 +14,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.ceiba.domain.model.VehicleEntity
 import com.ceiba.pruebaadn.R
-import com.ceiba.pruebaadn.base.App
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 

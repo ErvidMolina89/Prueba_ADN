@@ -1,8 +1,6 @@
 package com.ceiba.infraestructure.data_access
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ceiba.infraestructure.data_access.daos.*
 import com.ceiba.infraestructure.data_access.models.CheckModels
@@ -28,22 +26,4 @@ abstract class DbEstacionamiento : RoomDatabase() {
     abstract fun checkDao(): CheckDao
     abstract fun vehicleDao(): VehicleDao
 
-    companion object {
-        private const val nameDB = "DBEstacinamiento"
-        @Volatile
-        private var INSTANCE: DbEstacionamiento? = null
-
-        fun getInstance(context: Context): DbEstacionamiento =
-                INSTANCE ?: synchronized(this) {
-                    buildDatabase(context).also {
-                        INSTANCE = it
-                    }
-                }
-
-        private fun buildDatabase(context: Context) =
-                Room
-                    .databaseBuilder(context.applicationContext, DbEstacionamiento::class.java, nameDB)
-                    .fallbackToDestructiveMigration()
-                    .build()
-    }
 }

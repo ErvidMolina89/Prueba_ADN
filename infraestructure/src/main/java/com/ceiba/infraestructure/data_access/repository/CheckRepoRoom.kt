@@ -1,10 +1,8 @@
 package com.ceiba.infrastructure.data_access.repository
 
-import android.content.Context
 import com.ceiba.domain.aggregate.VehicleAggregate
 import com.ceiba.domain.model.CheckEntity
 import com.ceiba.domain.repository.CheckRepository
-import com.ceiba.infraestructure.data_access.DbEstacionamiento
 import com.ceiba.infraestructure.data_access.daos.CheckDao
 import com.ceiba.infrastructure.data_access.mapper.fromModels
 import com.ceiba.infrastructure.data_access.mapper.fromMutableAggregate

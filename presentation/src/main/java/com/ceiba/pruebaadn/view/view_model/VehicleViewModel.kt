@@ -1,25 +1,17 @@
 package com.ceiba.pruebaadn.view.view_model
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ceiba.application.service.VehicleApplicationService
 import com.ceiba.domain.exception.InvalidDataException
 import com.ceiba.domain.model.VehicleEntity
-import com.ceiba.domain.service.VehicleService
-import com.ceiba.infrastructure.data_access.repository.CheckRepoRoom
-import com.ceiba.infrastructure.data_access.repository.DisponibilityRepoRoom
-import com.ceiba.infrastructure.data_access.repository.VehicleRepoRoom
 import com.ceiba.pruebaadn.R
-import com.ceiba.pruebaadn.base.App
 import com.ceiba.pruebaadn.view.interfaces.VehicleViewModelDelegate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject

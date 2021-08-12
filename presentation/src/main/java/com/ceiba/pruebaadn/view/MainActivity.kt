@@ -7,14 +7,12 @@ import android.text.TextWatcher
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ceiba.domain.aggregate.VehicleAggregate
 import com.ceiba.domain.exception.InvalidDataException
 import com.ceiba.domain.model.CheckEntity
 import com.ceiba.domain.model.VehicleEntity
 import com.ceiba.pruebaadn.R
-import com.ceiba.pruebaadn.base.App
 import com.ceiba.pruebaadn.databinding.ActivityMainBinding
 import com.ceiba.pruebaadn.utils.*
 import com.ceiba.pruebaadn.view.interfaces.CheckViewModelDelegate

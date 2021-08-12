@@ -1,8 +1,6 @@
 package com.ceiba.infrastructure.data_access.repository
 
-import android.content.Context
 import com.ceiba.domain.repository.InitializationOfTheDefaultVariablesRepository
-import com.ceiba.infraestructure.data_access.DbEstacionamiento
 import com.ceiba.infraestructure.data_access.daos.DisponibilityDao
 import com.ceiba.infraestructure.data_access.daos.PricesDao
 import com.ceiba.infraestructure.data_access.daos.TypePriceDao
